@@ -1,0 +1,33 @@
+{
+  "name": "agent-black",
+  "version": "1.7.2",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "mysql2": "^2.0.0",
+    "pretty-ms": "^5.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "sequelize": "^5.21.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "phil",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlipperLP/agent-black.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FlipperLP/agent-black/issues"
+  },
+  "homepage": "https://github.com/FlipperLP/agent-black#readme",
+  "description": ""
+}
