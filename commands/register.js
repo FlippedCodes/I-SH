@@ -20,11 +20,7 @@ function messageFail(client, message, body) {
 
 // adds a user to the Maintainer table
 async function addUser(Maintainer, userID) {
-  const added = await Maintainer.findOrCreate(
-    {
-      where: { userID },
-    },
-  ).catch((err) => console.error(err));
+  const added = await Maintainer.findOrCreate({ where: { userID } }).catch((err) => console.error(err));
   const created = await added[1];
   return created;
 }
