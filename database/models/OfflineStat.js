@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports = sequelize.define('hubName', {
+module.exports = sequelize.define('offlineStat', {
   ID: {
     type: Sequelize.STRING(30),
     primaryKey: true,
