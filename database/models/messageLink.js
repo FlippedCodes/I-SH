@@ -1,17 +1,16 @@
 const Sequelize = require('sequelize');
 
-module.exports = sequelize.define('hubName', {
-  hubID: {
+module.exports = sequelize.define('messageLink', {
+  messageInstanceID: {
     type: Sequelize.INTEGER(11),
     primaryKey: true,
     autoIncrement: true,
   },
-  hubName: {
+  messageID: {
     type: Sequelize.STRING(30),
     allowNull: false,
-    unique: true,
   },
-  hostServerID: {
+  channelID: {
     type: Sequelize.STRING(30),
     allowNull: false,
   },

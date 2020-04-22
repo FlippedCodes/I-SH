@@ -1,22 +1,20 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('hubnames', {
-    hubID: {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('messagelinks', {
+    messageInstanceID: {
       type: Sequelize.INTEGER(11),
       primaryKey: true,
       autoIncrement: true,
     },
-    hubName: {
+    messageID: {
       type: Sequelize.STRING(30),
       allowNull: false,
-      unique: true,
     },
-    hostServerID: {
+    channelID: {
       type: Sequelize.STRING(30),
       allowNull: false,
     },
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
   }),
-
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('hubnames'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('messagelinks'),
 };
