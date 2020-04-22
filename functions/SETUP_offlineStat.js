@@ -17,7 +17,7 @@ module.exports.run = async (client, config) => {
   const embed = new RichEmbed()
     .setTitle('Bot back online!')
     .setColor(4296754)
-    .setFooter(client.user.tag, client.user.displayAvatarURL)
+    // .setFooter(client.user.tag, client.user.displayAvatarURL)
     .setTimestamp();
   const offlineTime = await OfflineStat.findOne({ where: { ID: 1 } }).catch(errHander);
   if (offlineTime) {
