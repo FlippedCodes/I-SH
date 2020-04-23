@@ -14,7 +14,6 @@ module.exports.run = async (client, message, args, config) => {
     );
   });
   message.channel.send(embed);
-  return;
 };
 
 module.exports.help = {
