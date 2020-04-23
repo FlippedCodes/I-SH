@@ -22,9 +22,7 @@ module.exports.run = async (client, message, config) => {
     const postChannelID = postChannel.channelID;
     if (postChannelID === channelID) return;
     const channel = client.channels.find((channel) => channel.id === postChannelID);
-    // channel.send(message.cleanContent);
-
-    const channelWebhooks = await channel.fetchWebhook();
+    const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
     hook.send(`**_${message.channel.guild.name}_**\n${message.cleanContent}`, {
