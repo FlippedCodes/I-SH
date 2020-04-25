@@ -26,6 +26,7 @@ require('./database/SETUP_DBConnection');
 // Login the bot
 client.login(config.env.get('token'));
 
+// trigger on bot login
 client.on('ready', async () => {
   // confirm user logged in
   console.log(`[${config.name}] Logged in as ${client.user.tag} serving ${client.guilds.size} Servers!`);
@@ -35,13 +36,16 @@ client.on('ready', async () => {
   });
 });
 
+// trigger on new message
 client.on('message', async (message) => {
   client.functions.get('EVENT_message').run(client, message, config);
 });
 
+// trigger on deleted message
 client.on('messageDelete', async (message) => {
   client.functions.get('EVENT_messageDelete').run(client, message, config);
 });
+
 // logging errors
 client.on('error', (e) => console.error(e));
 client.on('warn', (e) => console.warn(e));
