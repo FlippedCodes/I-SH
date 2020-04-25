@@ -20,5 +20,6 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'help',
-  desc: 'Shows a list of commands.',
+  title: 'Help',
+  desc: 'Shows this help of commans.',
 };

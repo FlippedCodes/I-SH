@@ -24,5 +24,6 @@ module.exports.run = async (client, message, args, config) => {
 
 module.exports.help = {
   name: 'about',
+  title: 'About',
   desc: 'Displays some information about the bot.',
 };

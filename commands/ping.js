@@ -28,5 +28,6 @@ module.exports.run = async (client, message) => checkPing(client, message);
 
 module.exports.help = {
   name: 'ping',
+  title: 'Ping',
   desc: 'Shows API and bot latencies.',
 };
