@@ -1,21 +1,19 @@
 const { RichEmbed } = require('discord.js');
 
 module.exports.run = async (client, message, args, config) => {
-  // prepare title and desc for embed
-  const embed = new RichEmbed()
-    .setTitle('Halp')
-    .setColor(message.member.displayColor)
-    .setDescription('For additional Info, please ask `Phil | Flipper#3621`');
+  const embed = new RichEmbed().setTitle('Halp');
+  if (message.channel.type !== 'dm') embed.setColor(message.member.displayColor);
   // creating embed fields for every command
   client.commands.forEach((CMD) => {
-    embed.addField(
-      `\`${config.prefix}${CMD.help.name} ${CMD.help.usage || ''}\``,
-      CMD.help.desc, false,
-    );
+    if (!CMD.help.title) return;
+    embed.addField(CMD.help.title,
+      `\`${config.prefix}${CMD.help.name} ${CMD.help.usage || ''}\`
+      ${CMD.help.desc}`, false);
   });
-  embed.addField('Need Help?', `
-  Join the help server here: https://discord.gg/fMYD6XR`);
-  message.channel.send(embed);
+  embed.addField('Need Help?', 'Join the halp serwer here: https://discord.gg/7J2RKDR')
+    .setFooter(client.user.tag, client.user.displayAvatarURL)
+    .setTimestamp();
+  message.channel.send({ embed });
 };
 
 module.exports.help = {
