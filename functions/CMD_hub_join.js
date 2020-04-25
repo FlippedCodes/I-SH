@@ -2,9 +2,7 @@ const BridgedChannel = require('../database/models/bridgedChannel');
 
 const HubName = require('../database/models/hubName');
 
-const errHander = (err) => {
-  console.error('ERROR:', err);
-};
+const errHander = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
