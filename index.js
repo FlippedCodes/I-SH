@@ -42,8 +42,14 @@ client.on('message', async (message) => {
 });
 
 // trigger on deleted message
-client.on('messageDelete', async (message) => {
-  client.functions.get('EVENT_messageDelete').run(client, message, config);
+// DISABLED: due to not trigger for messages before bot start
+// client.on('messageDelete', async (message) => {
+//   client.functions.get('EVENT_messageDelete').run(client, message, config);
+// });
+client.on('raw', (packet) => {
+  if (packet.t === 'MESSAGE_DELETE') {
+    client.functions.get('EVENT_messageDelete').run(client, packet.d, config);
+  }
 });
 
 // logging errors
