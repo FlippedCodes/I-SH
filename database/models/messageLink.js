@@ -2,16 +2,11 @@ const Sequelize = require('sequelize');
 
 module.exports = sequelize.define('messageLink', {
   messageInstanceID: {
-    type: Sequelize.INTEGER(11),
-    primaryKey: true,
-    autoIncrement: true,
+    type: Sequelize.STRING(30),
+    allowNull: false,
   },
   messageID: {
     type: Sequelize.STRING(30),
-    allowNull: false,
-  },
-  channelID: {
-    type: Sequelize.STRING(30),
-    allowNull: false,
+    primaryKey: true,
   },
 });
