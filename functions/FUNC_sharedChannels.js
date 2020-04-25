@@ -1,5 +1,7 @@
 const bridgedChannel = require('../database/models/bridgedChannel');
 
+const MessageLink = require('../database/models/messageLink');
+
 const errHander = (err) => {
   console.error('ERROR:', err);
 };
@@ -17,6 +19,8 @@ module.exports.run = async (client, message, config) => {
   const hubID = sourceChannel.hubID;
   // get all channels in hubID
   const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'], where: { hubID } }).catch(errHander);
+  // create messageLink instance ID
+  const OrgMessageLink = await MessageLink.create({ messageInstanceID: message.id, messageID: message.id });
   // post message in every channel besides original one
   allHubChannels.forEach(async (postChannel) => {
     const postChannelID = postChannel.channelID;
@@ -25,10 +29,12 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    hook.send(`**_${message.channel.guild.name}_**\n${message.cleanContent}`, {
+    const sendMessage = await hook.send(`**_${message.channel.guild.name}_**\n${message.cleanContent}`, {
       username: message.author.username,
       avatarURL: message.author.avatarURL,
     }).catch(errHander);
+    // create DB entry
+    MessageLink.create({ messageInstanceID: message.id, messageID: sendMessage.id });
   });
   // log messages in DB
 
