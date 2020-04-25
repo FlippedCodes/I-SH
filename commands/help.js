@@ -13,6 +13,8 @@ module.exports.run = async (client, message, args, config) => {
       CMD.help.desc, false,
     );
   });
+  embed.addField('Need Help?', `
+  Join the help server here: https://discord.gg/fMYD6XR`);
   message.channel.send(embed);
 };
 
