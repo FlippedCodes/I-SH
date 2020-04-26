@@ -11,7 +11,7 @@ module.exports = sequelize.define('hubName', {
     allowNull: false,
     unique: true,
   },
-  hostServerID: {
+  ownerID: {
     type: Sequelize.STRING(30),
     allowNull: false,
   },
