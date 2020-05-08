@@ -28,8 +28,9 @@ async function getMessages(messageID) {
   const messageInstanceID = await getMessageInstance(messageID);
   if (!messageInstanceID) return null;
   // get all messageIDs
-  const allMessageIDs = await getDBMessages(messageInstanceID);
-  deleteDBMessage(messageInstanceID);
+  const coreID = messageInstanceID.messageInstanceID;
+  const allMessageIDs = await getDBMessages(coreID);
+  deleteDBMessage(coreID);
   return allMessageIDs;
 }
 
