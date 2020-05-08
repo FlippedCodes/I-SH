@@ -16,6 +16,7 @@
             "SETUP_status"
         ]
     },
+    "maxAllowedHubs": 3,
     "aboutText": "./readme.md",
     "logStatusChannel": "702551935051366471"
 }
