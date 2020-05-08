@@ -35,7 +35,7 @@ module.exports.run = async (client, message, config) => {
       avatarURL: message.author.avatarURL,
     }).catch(errHander);
     // create DB entry for messageLink
-    MessageLink.create({ messageInstanceID: message.id, messageID: sendMessage.id, channelID: message.channel.id });
+    MessageLink.create({ messageInstanceID: message.id, messageID: sendMessage.id, channelID: postChannelID });
   });
   // log messages in DB
 
