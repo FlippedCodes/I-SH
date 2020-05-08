@@ -34,6 +34,8 @@ async function createBridgedChannel(hubID, channelID) {
 }
 
 module.exports.run = async (client, message, args, config) => {
+  // TODO: check user permissions
+  // Hold on! You dont have permissions to manage this channel. Try asking an admin or link another chnanel where you have permissions instead.
   // get subcmd from args
   const [subcmd, hubName, customChnanelID] = args;
   // check if hubname is present

@@ -14,6 +14,7 @@ module.exports.run = async (client, message, config) => {
   // get channelID
   const channelID = message.channel.id;
   // check if channelID is part of i-sh: get hubID
+  // TODO: create channelcache for channels in list to reduce db calls
   const sourceChannel = await bridgedChannel.findOne({ attributes: ['hubID'], where: { channelID } }).catch(errHander);
   if (!sourceChannel) return;
   const hubID = sourceChannel.hubID;
