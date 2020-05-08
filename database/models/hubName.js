@@ -7,7 +7,7 @@ module.exports = sequelize.define('hubName', {
     autoIncrement: true,
   },
   hubName: {
-    type: Sequelize.STRING(30),
+    type: Sequelize.STRING(50),
     allowNull: false,
     unique: true,
   },
