@@ -20,7 +20,7 @@ module.exports.run = async (client, message, config) => {
   // get all channels in hubID
   const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'], where: { hubID } }).catch(errHander);
   // create messageLink instance ID
-  const OrgMessageLink = await MessageLink.create({ messageInstanceID: message.id, messageID: message.id });
+  const OrgMessageLink = await MessageLink.create({ messageInstanceID: message.id, messageID: message.id, channelID: message.channel.id });
   // post message in every channel besides original one
   allHubChannels.forEach(async (postChannel) => {
     const postChannelID = postChannel.channelID;
@@ -33,8 +33,8 @@ module.exports.run = async (client, message, config) => {
       username: message.author.username,
       avatarURL: message.author.avatarURL,
     }).catch(errHander);
-    // create DB entry
-    MessageLink.create({ messageInstanceID: message.id, messageID: sendMessage.id });
+    // create DB entry for messageLink
+    MessageLink.create({ messageInstanceID: message.id, messageID: sendMessage.id, channelID: message.channel.id });
   });
   // log messages in DB
 
