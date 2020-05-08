@@ -27,7 +27,7 @@ require('./database/SETUP_DBConnection');
 client.login(config.env.get('token'));
 
 // trigger on bot login
-client.on('ready', async () => {
+client.on('ready', () => {
   // confirm user logged in
   console.log(`[${config.name}] Logged in as ${client.user.tag} serving ${client.guilds.size} Servers!`);
   // set bot player status
@@ -37,7 +37,7 @@ client.on('ready', async () => {
 });
 
 // trigger on new message
-client.on('message', async (message) => {
+client.on('message', (message) => {
   client.functions.get('EVENT_message').run(client, message, config);
 });
 
