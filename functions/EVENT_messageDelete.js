@@ -47,7 +47,11 @@ module.exports.run = async (client, message, config) => {
   // for each loop [
   //  delete DB entry
   // ]
-  allMessageIDs.forEach((messageID) => {
+  allMessageIDs.forEach((entry) => {
+    if (message.id === entry.messageID) return;
+    const channel = client.channels.find((channel) => channel.id === entry.channelID);
+    const targetMessage = channel.fetchMessage(entry.messageID);
+    targetMessage.delete();
     // check if message excists: check channel permissions: delete
     // TODO: check channel permissions
   });
