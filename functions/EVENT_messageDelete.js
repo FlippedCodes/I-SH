@@ -5,7 +5,7 @@ const MessageLink = require('../database/models/messageLink');
 const errHander = (err) => { console.error('ERROR:', err); };
 
 async function checkChannel(channelID) {
-  const result = await BridgedChannel.findOne({ attributes: [], where: { channelID } }).catch(errHander);
+  const result = await BridgedChannel.findOne({ attributes: ['channelID'], where: { channelID } }).catch(errHander);
   return result;
 }
 
@@ -15,12 +15,12 @@ async function getMessageInstance(messageID) {
 }
 
 async function getDBMessages(messageInstanceID) {
-  const result = await MessageLink.find({ attributes: ['messageID'], where: { messageInstanceID } }).catch(errHander);
+  const result = await MessageLink.findAll({ attributes: ['messageID', 'channelID'], where: { messageInstanceID } }).catch(errHander);
   return result;
 }
 
 function deleteDBMessage(messageInstanceID) {
-  MessageLink.destroy({ where: messageInstanceID });
+  MessageLink.destroy({ where: { messageInstanceID } });
 }
 
 async function getMessages(messageID) {
