@@ -37,9 +37,10 @@ client.on('ready', () => {
 });
 
 // trigger on new message
-client.on('message', (message) => {
-  client.functions.get('EVENT_message').run(client, message, config);
-});
+client.on('message', (message) => { client.functions.get('EVENT_message').run(client, message, config); });
+
+// trigger on channelDeletion
+client.on('channelDelete', (channel) => { client.functions.get('EVENT_channelDelete').run(channel); });
 
 // trigger on deleted message
 // DISABLED: due to not trigger for messages before bot start
