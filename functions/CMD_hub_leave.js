@@ -24,10 +24,11 @@ module.exports.run = async (client, message, args, config) => {
   // TODO: check user permissions
   // Hold on! You dont have permissions to manage this channel. Try asking an admin to remove the link.
 
-  // get custom channel
+  // get custom channel id
   const channelID = message.channel.id;
-
+  // delete channel entry from database
   const created = await deleteChannel(channelID);
+  // check if channel entry is deleted and give feedback
   if (created) {
     messageSuccess(client, message, 'This channel is now not longer linked!');
   } else {
