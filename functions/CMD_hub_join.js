@@ -55,7 +55,7 @@ module.exports.run = async (client, message, args, config) => {
   if (created) {
     messageSuccess(client, message, `This channel is now linked with \`${hubName}\``);
   } else {
-    messageFail(client, message, `this channel is already linked with \`${hubName}\`! Try unlinking it first by using \`${config.prefix}${module.exports.help.parent} leave\`.`);
+    messageFail(client, message, `This channel is already linked with \`${hubName}\`! Try unlinking it first by using \`${config.prefix}${module.exports.help.parent} leave\`.`);
   }
 };
 
