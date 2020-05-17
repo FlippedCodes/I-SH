@@ -1,6 +1,6 @@
 module.exports.run = async (client, message, args, config) => {
   message.reply('stats');
-  // owner, channel age, name (, hubID)
+  // owner, channel age, channelAmmount, name (, hubID)
 };
 
 module.exports.help = {
