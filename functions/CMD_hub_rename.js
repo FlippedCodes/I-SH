@@ -1,5 +1,6 @@
 module.exports.run = async (client, message, args, config) => {
   message.reply('rnme');
+  // renames the hub
 };
 
 module.exports.help = {
