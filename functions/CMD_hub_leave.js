@@ -29,11 +29,8 @@ module.exports.run = async (client, message, args, config) => {
   // delete channel entry from database
   const created = await deleteChannel(channelID);
   // check if channel entry is deleted and give feedback
-  if (created) {
-    messageSuccess(client, message, 'This channel is now not longer linked!');
-  } else {
-    messageFail(client, message, 'This channel is not linked with any hub! You can\'t unlink it.');
-  }
+  if (created) messageSuccess(client, message, 'This channel is now not longer linked!');
+  else messageFail(client, message, 'This channel is not linked with any hub! You can\'t unlink it.');
 };
 
 module.exports.help = {
