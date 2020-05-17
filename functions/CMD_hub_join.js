@@ -38,28 +38,24 @@ module.exports.run = async (client, message, args, config) => {
   // TODO: check user permissions
   // Hold on! You dont have permissions to manage this channel. Try asking an admin or link another chnanel where you have permissions instead.
   // get subcmd from args
-  const [subcmd, hubName, customChnanelID] = args;
+  const [subcmd, hubName] = args;
   // check if hubname is present
   if (!hubName) {
     return messageFail(client, message,
       `Command usage: 
-      \`\`\`${config.prefix}${module.exports.help.parent} ${subcmd} ${hubName || 'HUBNAME'} [CHANNELID]\`\`\``);
+      \`\`\`${config.prefix}${module.exports.help.parent} ${subcmd} HUBNAME\`\`\``);
   }
   // get hubID
   const hubID = await getHubID(hubName);
   if (!hubID) return messageFail(client, message, `There is no hub named \`${hubName}\`! But you can create one by using \`${config.prefix}${module.exports.help.parent} register\`.`);
 
   // get custom channel
-  let channelID = message.channel.id;
-  if (customChnanelID) channelID = customChnanelID;
-
+  const channelID = message.channel.id;
   const created = await createBridgedChannel(hubID, channelID);
   if (created) {
-    let successMessage = `This channel is now linked with \`${hubName}\``;
-    if (customChnanelID) successMessage = `The channel <#${channelID}> is now linked with \`${hubName}\``;
-    messageSuccess(client, message, successMessage);
+    messageSuccess(client, message, `This channel is now linked with \`${hubName}\``);
   } else {
-    messageFail(client, message, `The channel you are trying to link is already linked with \`${hubName}\`! Try unlinking it first by using \`${config.prefix}${module.exports.help.parent} leave\`.`);
+    messageFail(client, message, `this channel is already linked with \`${hubName}\`! Try unlinking it first by using \`${config.prefix}${module.exports.help.parent} leave\`.`);
   }
 };
 
