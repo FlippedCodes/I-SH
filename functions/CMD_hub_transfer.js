@@ -1,3 +1,4 @@
+// DISABLED: not done
 module.exports.run = async (client, message, args, config) => {
   message.reply('trans');
 };
