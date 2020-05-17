@@ -12,7 +12,7 @@ function messageFail(client, message, body) {
 
 module.exports.run = async (client, message, args, config) => {
   const [subcmd] = args;
-  const commandValues = ['register', 'delete', 'join', 'leave', 'transfer', 'stats', 'rename'];
+  const commandValues = ['register', 'delete', 'join', 'leave', 'transfer', 'rename'];
   if (commandValues.includes(subcmd)) {
     client.functions.get(`CMD_hub_${subcmd}`)
       .run(client, message, args, config);
@@ -25,6 +25,6 @@ module.exports.run = async (client, message, args, config) => {
 module.exports.help = {
   name: 'hub',
   title: 'Manage hub',
-  usage: 'register|delete|join|leave|transfer|stats|rename',
+  usage: 'register|delete|join|leave|transfer|rename',
   desc: 'Manage hubs and links between channels.',
 };
