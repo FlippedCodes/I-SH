@@ -34,6 +34,12 @@ async function getMessages(messageID) {
   return allMessageIDs;
 }
 
+function checkDeletePermissions(message) {
+  let permissions = false;
+  if (message.guild.me.hasPermission('MANAGE_MESSAGES')) permissions = true;
+  return permissions;
+}
+
 // Deletes all messages in every channel, if its deleted in one
 module.exports.run = async (client, message, config) => {
   // check if channel is part of service
