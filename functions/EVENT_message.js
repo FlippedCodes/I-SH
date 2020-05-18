@@ -9,7 +9,11 @@ module.exports.run = async (client, message, config) => {
   const args = messageArray.slice(1);
 
   // return if not prefix
-  if (!command.startsWith(config.prefix)) return client.functions.get('FUNC_sharedChannels').run(client, message, config);
+  if (!command.startsWith(config.prefix)) {
+    client.functions.get('FUNC_sharedChannels').run(client, message, config);
+    client.functions.get('FUNC_messageGarbageCollection').run(config);
+    return;
+  }
 
   // remove prefix and lowercase
   const cmd = client.commands.get(command.slice(config.prefix.length).toLowerCase());
