@@ -52,10 +52,7 @@ client.on('guildDelete', (guild) => { client.functions.get('EVENT_guildDelete').
 // });
 client.on('raw', async (packet) => {
   if (packet.t === 'MESSAGE_DELETE' && packet.d.guild_id) {
-    // const message = new Discord.Message(client, packet);
-    const guild = await client.guilds.find((guild) => guild.id === packet.d.guild_id);
-    const entry = await guild.fetchAuditLogs({ type: 'MESSAGE_DELETE' }).then((audit) => audit.entries.first());
-    if (!entry.executor.bot) client.functions.get('EVENT_messageDelete').run(client, packet.d, config);
+    client.functions.get('EVENT_messageDelete').run(client, packet.d, config);
   }
 });
 
