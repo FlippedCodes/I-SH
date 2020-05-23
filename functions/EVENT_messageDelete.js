@@ -34,9 +34,8 @@ async function getMessages(messageID) {
   return allMessageIDs;
 }
 
-function checkDeletePermissions(message) {
-  let permissions = false;
-  if (message.guild.me.hasPermission('MANAGE_MESSAGES')) permissions = true;
+async function checkDeletePermissions(message) {
+  const permissions = await message.client.functions.get('FUNC_checkBotPermissions').run(message, 'MANAGE_MESSAGES');
   return permissions;
 }
 
