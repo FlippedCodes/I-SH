@@ -47,11 +47,6 @@ module.exports.run = async (client, message, config) => {
   const allMessageIDs = await getMessages(message.id);
   if (!allMessageIDs) return;
 
-  // TODO: check if message is deleted by bot: causes a loop
-  // TODO: [REQUIERES MESSAGE MANAGING PERMISSIONS]
-  // for each loop [
-  //  delete DB entry
-  // ]
   allMessageIDs.forEach(async (entry) => {
     if (message.id === entry.messageID) return;
     const channel = await client.channels.find((channel) => channel.id === entry.channelID);
