@@ -51,11 +51,8 @@ module.exports.run = async (client, message, config) => {
     if (message.id === entry.messageID) return;
     const channel = await client.channels.find((channel) => channel.id === entry.channelID);
     const targetMessage = await channel.fetchMessage(entry.messageID);
-    if (await checkDeletePermissions(targetMessage)) {
-      if (!targetMessage.deleted) targetMessage.delete();
-    }
-    // check if message excists: check channel permissions: delete
-    // TODO: check channel permissions
+    if (!targetMessage.deleted && await checkDeletePermissions(targetMessage)) targetMessage.delete();
+    else targetMessage.react('❌');
   });
 };
 
