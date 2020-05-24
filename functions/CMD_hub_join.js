@@ -25,10 +25,8 @@ async function getHubID(hubName) {
 
 // creates channel DB entry
 async function createBridgedChannel(hubID, channelID, serverID) {
-  let result = false;
-  result = await BridgedChannel.findOne({ where: { channelID } }).catch(errHander);
-  result = await BridgedChannel.findOne({ where: { serverID, hubID } }).catch(errHander);
-  if (result) return false;
+  if (await BridgedChannel.findOne({ where: { channelID } }).catch(errHander)) return false;
+  if (await BridgedChannel.findOne({ where: { serverID, hubID } }).catch(errHander)) return false;
   const [bridgedChannel] = await BridgedChannel.findOrCreate({
     where: { channelID }, defaults: { serverID, hubID },
   }).catch(errHander);
@@ -58,7 +56,7 @@ module.exports.run = async (client, message, args, config) => {
   if (created) {
     messageSuccess(client, message, `This channel is now linked with \`${hubName}\``);
   } else {
-    messageFail(client, message, `This channel is already linked with \`${hubName}\`! Try unlinking it first by using \`${config.prefix}${module.exports.help.parent} leave\`.`);
+    messageFail(client, message, `A channel in this server is already linked with \`${hubName}\`! Try unlinking it first by using \`${config.prefix}${module.exports.help.parent} leave\`.`);
   }
 };
 
