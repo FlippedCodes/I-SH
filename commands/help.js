@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args, config) => {
       `\`${config.prefix}${CMD.help.name} ${CMD.help.usage || ''}\`
       ${CMD.help.desc}`, false);
   });
-  embed.addField('Need Help?', 'Join the halp serwer here: https://discord.gg/7J2RKDR')
+  embed.addField('Need Help?', 'Join the help server here: https://discord.gg/7J2RKDR')
     .setFooter(client.user.tag, client.user.displayAvatarURL)
     .setTimestamp();
   message.channel.send({ embed });
