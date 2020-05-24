@@ -53,6 +53,7 @@ module.exports.run = async (client, message, config) => {
     const targetMessage = await channel.fetchMessage(entry.messageID);
     if (!targetMessage.deleted && await checkDeletePermissions(targetMessage)) targetMessage.delete();
     else targetMessage.react('❌');
+    // if too many recation errors showing up --> Check for reaction permissions frist
   });
 };
 
