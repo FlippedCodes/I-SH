@@ -45,11 +45,7 @@ client.on('channelDelete', (channel) => { client.functions.get('EVENT_channelDel
 // trigger on guildDelete
 client.on('guildDelete', (guild) => { client.functions.get('EVENT_guildDelete').run(guild); });
 
-// trigger on deleted message
-// DISABLED: due to not trigger for messages before bot start
-// client.on('messageDelete', async (message) => {
-//   client.functions.get('EVENT_messageDelete').run(client, message, config);
-// });
+// trigger on deleted message with raw package
 client.on('raw', async (packet) => {
   if (packet.t === 'MESSAGE_DELETE' && packet.d.guild_id) {
     client.functions.get('EVENT_messageDelete').run(client, packet.d, config);
