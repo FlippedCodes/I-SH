@@ -7,7 +7,7 @@ const errHander = (err) => { console.error('ERROR:', err); };
 // Deletes all messages in every channel, if its deleted in one
 module.exports.run = async (guild) => {
   guild.channels.forEach(async (channel) => {
-    if (!channel.type === 'text') return;
+    if (!channel.type !== 'text') return;
     const channelID = channel.id;
     const checkedChannel = await BridgedChannel.findOne({ attributes: ['channelID'], where: { channelID } }).catch(errHander);
     if (!checkedChannel) return;
