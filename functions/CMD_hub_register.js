@@ -23,6 +23,8 @@ async function createHub(hubName, ownerID, maxHubs) {
 }
 
 module.exports.run = async (client, message, args, config) => {
+  // check if in DM
+  if (message.channel.type !== 'dm') return messageFail(client, message, 'This command can only be used in DM!');
   // get subcmd from args
   const [subcmd, checkHubName] = args;
   // check if hubname is present
@@ -36,8 +38,12 @@ module.exports.run = async (client, message, args, config) => {
   const fittedHubName = `${message.id}_${hubName}`;
   if (fittedHubName.length > 50) return messageFail(client, message, 'Sorry, your hubname ist too long... Try something shorter.');
   const created = await createHub(fittedHubName, message.author.id, config.maxAllowedHubs);
-  if (created) messageSuccess(client, message, `You created \`${hubName}\`! You can link with it by using \`${config.prefix}${module.exports.help.parent} join ${fittedHubName}\`.`);
-  else messageFail(client, message, `Your account already owns a maximum of ${config.maxAllowedHubs} hubs. You can't create more then that!`);
+  if (created) {
+    messageSuccess(client, message,
+      `You created \`${hubName}\`!
+      You can link with it by using \`${config.prefix}${module.exports.help.parent} join ${fittedHubName}\`.
+      **Make sure you only give the hub name to servers that you want to invite.**`);
+  } else messageFail(client, message, `Your account already owns a maximum of ${config.maxAllowedHubs} hubs. You can't create more then that!`);
 };
 
 module.exports.help = {

@@ -1,7 +1,7 @@
 module.exports.run = async (client, message, config) => {
   // return if unwanted
   if (message.author.bot) return;
-  if (message.channel.type === 'dm') return;
+  // if (message.channel.type === 'dm') return;
 
   // put comamnd in array
   const messageArray = message.content.split(/\s+/g);

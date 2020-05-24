@@ -20,9 +20,16 @@ async function deleteChannel(channelID) {
   return result;
 }
 
+async function checkPermissions(message) {
+  const permissions = await message.client.functions.get('FUNC_checkPermissions').run(message.member, message, 'MANAGE_CHANNELS');
+  return permissions;
+}
+
 module.exports.run = async (client, message, args, config) => {
-  // TODO: check user permissions
-  // Hold on! You dont have permissions to manage this channel. Try asking an admin to remove the link.
+  // check DM
+  if (message.channel.type === 'dm') return messageFail(client, message, 'You can\'t unlink a DM channel!');
+  // check user permissions
+  if (!await checkPermissions(message)) return messageFail(client, message, 'Hold on! You dont have permissions to manage this channel. Try asking an admin to remove the link.');
 
   // get custom channel id
   const channelID = message.channel.id;

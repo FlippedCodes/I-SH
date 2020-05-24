@@ -33,10 +33,17 @@ async function createBridgedChannel(hubID, channelID, serverID) {
   return true;
 }
 
+async function checkPermissions(message) {
+  const permissions = await message.client.functions.get('FUNC_checkPermissions').run(message.member, message, 'MANAGE_CHANNELS');
+  return permissions;
+}
+
 module.exports.run = async (client, message, args, config) => {
-  // TODO: check if server has already the same shared channel
-  // TODO: check user permissions
-  // Hold on! You dont have permissions to manage this channel. Try asking an admin or link another chnanel where you have permissions instead.
+  // check DM
+  if (message.channel.type === 'dm') return messageFail(client, message, 'You can\'t link a DM channel!');
+  // check user permissions
+  if (!await checkPermissions(message)) return messageFail(client, message, 'Hold on! You dont have permissions to manage this channel. Try asking an admin or link another chnanel where you have permissions instead.');
+
   // get subcmd from args
   const [subcmd, hubName] = args;
   // check if hubname is present
