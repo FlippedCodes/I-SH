@@ -7,6 +7,7 @@ module.exports = {
     },
     serverID: {
       type: Sequelize.STRING(30),
+      allowNull: false,
     },
     hubID: {
       type: Sequelize.INTEGER(11),

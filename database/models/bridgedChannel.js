@@ -8,6 +8,7 @@ module.exports = sequelize.define('bridgedChannel', {
   },
   serverID: {
     type: Sequelize.STRING(30),
+    allowNull: false,
   },
   hubID: {
     type: Sequelize.INTEGER(11),
