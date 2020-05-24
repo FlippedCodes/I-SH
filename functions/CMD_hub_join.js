@@ -24,11 +24,13 @@ async function getHubID(hubName) {
 }
 
 // creates channel DB entry
-async function createBridgedChannel(hubID, channelID) {
-  const result = await BridgedChannel.findOne({ where: { channelID } }).catch(errHander);
+async function createBridgedChannel(hubID, channelID, serverID) {
+  let result = false;
+  result = await BridgedChannel.findOne({ where: { channelID } }).catch(errHander);
+  result = await BridgedChannel.findOne({ where: { serverID, hubID } }).catch(errHander);
   if (result) return false;
   const [bridgedChannel] = await BridgedChannel.findOrCreate({
-    where: { channelID }, defaults: { hubID },
+    where: { channelID }, defaults: { serverID, hubID },
   }).catch(errHander);
   return true;
 }
@@ -51,7 +53,8 @@ module.exports.run = async (client, message, args, config) => {
 
   // get custom channel
   const channelID = message.channel.id;
-  const created = await createBridgedChannel(hubID, channelID);
+  const serverID = message.guild.id;
+  const created = await createBridgedChannel(hubID, channelID, serverID);
   if (created) {
     messageSuccess(client, message, `This channel is now linked with \`${hubName}\``);
   } else {
