@@ -5,6 +5,9 @@ module.exports = {
       primaryKey: true,
       unique: true,
     },
+    serverID: {
+      type: Sequelize.STRING(30),
+    },
     hubID: {
       type: Sequelize.INTEGER(11),
       allowNull: false,
@@ -15,6 +18,13 @@ module.exports = {
     },
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
+  },
+  {
+    uniqueKeys: {
+      uniqueLink: {
+        fields: ['serverID', 'hubID'],
+      },
+    },
   }),
 
   down: (queryInterface, Sequelize) => queryInterface.dropTable('bridgedchannels'),
