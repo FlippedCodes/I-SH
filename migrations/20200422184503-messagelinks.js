@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('messagelinks', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('messageLinks', {
     messageInstanceID: {
       type: Sequelize.STRING(30),
       allowNull: false,
@@ -22,5 +22,5 @@ module.exports = {
       },
     },
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('messagelinks'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('messageLinks'),
 };

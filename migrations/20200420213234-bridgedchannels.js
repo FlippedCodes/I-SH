@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('bridgedchannels', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('bridgedChannels', {
     channelID: {
       type: Sequelize.STRING(30),
       primaryKey: true,
@@ -28,5 +28,5 @@ module.exports = {
     },
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('bridgedchannels'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('bridgedChannels'),
 };

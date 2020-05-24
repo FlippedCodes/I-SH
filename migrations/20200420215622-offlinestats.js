@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('offlinestats', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('offlineStats', {
     ID: {
       type: Sequelize.STRING(30),
       primaryKey: true,
@@ -9,5 +9,5 @@ module.exports = {
     updatedAt: Sequelize.DATE,
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('offlinestats'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('offlineStats'),
 };
