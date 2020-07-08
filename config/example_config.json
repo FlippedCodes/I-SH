@@ -1,6 +1,6 @@
 {
     "token": "**************************",
-    "development": {
+    "production": {
         "username": "***",
         "password": "*****************",
         "database": "**********************",
