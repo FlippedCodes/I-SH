@@ -1,0 +1,15 @@
+TODO: 
+- message editing
+- attechment support
+- old style with bot messages
+- style switcher
+- emoji support and custom emoji support
+- safer setting up (open ivite code = no gud)
+- marketing
+- check nsfw channels
+- Telegram support
+- set up TOS
+- coammdn and messaging banlist
+
+(- channel creator (for permissin management))
+(-web interface)
