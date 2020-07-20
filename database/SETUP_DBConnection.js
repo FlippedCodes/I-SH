@@ -17,7 +17,7 @@ if (config.env.get('inDev')) {
   host = DBCredentials.host;
 } else {
   database = process.env.DBNameISH;
-  user = process.env.DBNameISH;
+  user = process.env.DBUsernameISH;
   password = process.env.DBPasswISH;
   host = process.env.DBHost;
 }
