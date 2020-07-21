@@ -1,21 +1,20 @@
+IN PROGRESS:
+- set up TOS - Tox
+- marketing - Tox (+ Phil)
+
 TODO: 
 - message editing
 - attachment support
-- Implement new message style
+- Implement new message style + add discord invite link
 - safer setting up (open ivite code = no gud)
 - check nsfw channels
 - Telegram support
 - command and messaging banlist
-
 (- channel creator (for permission management))
 (-web interface)
 
-IN PROGRESS:
-- set up TOS - Tox
-
 DONE: 
 - emoji support and custom emoji support
-- marketing
 
 CANCELED:
 - old style with bot messages
