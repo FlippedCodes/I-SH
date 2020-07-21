@@ -1,15 +1,22 @@
 TODO: 
 - message editing
-- attechment support
-- old style with bot messages
-- style switcher
-- emoji support and custom emoji support
+- attachment support
+- Implement new message style
 - safer setting up (open ivite code = no gud)
-- marketing
 - check nsfw channels
 - Telegram support
-- set up TOS
-- coammdn and messaging banlist
+- command and messaging banlist
 
-(- channel creator (for permissin management))
+(- channel creator (for permission management))
 (-web interface)
+
+IN PROGRESS:
+- set up TOS - Tox
+
+DONE: 
+- emoji support and custom emoji support
+- marketing
+
+CANCELED:
+- old style with bot messages
+- style switcher
