@@ -68,10 +68,13 @@ module.exports.run = async (client, message, args, config) => {
       case '✅':
         // deleted channels and hub
         // const deletedMessages = await MessageLink.destroy({ where: { hubID } }).catch(errHander);
-        const deletedChannels = await BridgedChannel.destroy({ where: { hubID } }).catch(errHander);
+        // const deletedChannels = await BridgedChannel.destroy({ where: { hubID } }).catch(errHander);
+        await BridgedChannel.destroy({ where: { hubID } }).catch(errHander);
         const deletedHub = await HubName.destroy({ where: { hubID } }).catch(errHander);
 
-        if (deletedHub && deletedChannels) messageSuccess(client, message, 'Your hub has now been deleted!');
+        // FIXME: if there are no channels connected, the bot throws an error even if it was successful
+        // if (deletedHub && deletedChannels) messageSuccess(client, message, 'Your hub has now been deleted!');
+        if (deletedHub) messageSuccess(client, message, 'Your hub has now been deleted!');
         else messageFail(client, message, 'Oh no! It seems something went wrong... Please try again another time. If this error persists, feel free to contact us on our support server.');
         return;
       default:
