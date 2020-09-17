@@ -32,12 +32,12 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    const sendMessage = await hook.send(`**_${message.channel.guild.name}_**\n${message.content}`, {
+    const sentMessage = await hook.send(`**_${message.channel.guild.name}_**\n${message.content}`, {
       username: message.author.username,
       avatarURL: message.author.avatarURL,
     }).catch(errHander);
     // create DB entry for messageLink
-    MessageLink.create({ messageInstanceID: message.id, messageID: sendMessage.id, channelID: postChannelID });
+    MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });
   });
   // log messages in DB
 
