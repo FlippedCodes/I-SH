@@ -32,7 +32,7 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    const sendMessage = await hook.send(`**_${message.channel.guild.name}_**\n${message.cleanContent}`, {
+    const sendMessage = await hook.send(`**_${message.channel.guild.name}_**\n${message.content}`, {
       username: message.author.username,
       avatarURL: message.author.avatarURL,
     }).catch(errHander);
