@@ -19,5 +19,5 @@
     "maxAllowedHubs": 3,
     "aboutText": "./readme.md",
     "logStatusChannel": "702551935051366471",
-    "messageLinkTime": 900000
+    "messageLinkTime": 3600000
 }
