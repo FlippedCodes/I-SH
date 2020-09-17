@@ -17,6 +17,8 @@ module.exports.run = async (client, message, config) => {
   // TODO: create channelcache for channels in list to reduce db calls
   const sourceChannel = await bridgedChannel.findOne({ attributes: ['hubID'], where: { channelID } }).catch(errHander);
   if (!sourceChannel) return;
+  // only remove old entries if new message gets sended to avoid DB overload
+  client.functions.get('FUNC_messageGarbageCollection').run(config);
   const hubID = sourceChannel.hubID;
   // get all channels in hubID
   const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'], where: { hubID } }).catch(errHander);
