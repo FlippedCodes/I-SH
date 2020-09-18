@@ -1,3 +1,5 @@
+const { RichEmbed } = require('discord.js');
+
 const bridgedChannel = require('../database/models/bridgedChannel');
 
 const MessageLink = require('../database/models/messageLink');
@@ -8,6 +10,11 @@ const errHander = (err) => {
 
 function createNewWebhook(config, channel) {
   channel.createWebhook(config.name).catch(errHander);
+}
+
+function createEmbed(message) {
+  const embed = new RichEmbed().setDescription(message.channel.guild.name, message.channel.guild.iconURL);
+  return [message.content, embed];
 }
 
 module.exports.run = async (client, message, config) => {
@@ -32,7 +39,9 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    const sentMessage = await hook.send(`**_${message.channel.guild.name}_**\n${message.content}`, {
+    const [body, embed] = createEmbed(message);
+    const sentMessage = await hook.send(body, {
+      embeds: [embed],
       username: message.author.username,
       avatarURL: message.author.avatarURL,
     }).catch(errHander);
