@@ -50,7 +50,7 @@ module.exports.run = async (client, message, config) => {
   allMessageIDs.forEach(async (entry) => {
     if (message.id === entry.messageID) return;
     const channel = await client.channels.cache.find((channel) => channel.id === entry.channelID);
-    const targetMessage = await channel.fetchMessage(entry.messageID);
+    const targetMessage = await channel.messages.fetch(entry.messageID);
     if (!targetMessage.deleted && await checkDeletePermissions(targetMessage)) targetMessage.delete();
     else targetMessage.react('❌');
     // if too many recation errors showing up --> Check for reaction permissions frist
