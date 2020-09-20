@@ -1,12 +1,12 @@
+DONE: 
+- attachment support
+- Pinging and channel sharing
+
 IN PROGRESS:
 - hub settings
   - user blacklist
   - global messaging user blacklist
   - Server join blacklist
-
-DONE: 
-- attachment support
-- Pinging and channel sharing
 
 DROPPED:
 (- channel creator (for permission management))
