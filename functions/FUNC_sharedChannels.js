@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 const bridgedChannel = require('../database/models/bridgedChannel');
 
@@ -13,7 +13,7 @@ function createNewWebhook(config, channel) {
 }
 
 function createEmbed(message) {
-  const embed = new RichEmbed().setDescription(message.channel.guild.name, message.channel.guild.iconURL);
+  const embed = new MessageEmbed().setDescription(message.channel.guild.name, message.channel.guild.iconURL);
   return [message.content, embed];
 }
 
@@ -35,7 +35,7 @@ module.exports.run = async (client, message, config) => {
   allHubChannels.forEach(async (postChannel) => {
     const postChannelID = postChannel.channelID;
     if (postChannelID === channelID) return;
-    const channel = client.channels.find((channel) => channel.id === postChannelID);
+    const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
@@ -43,7 +43,7 @@ module.exports.run = async (client, message, config) => {
     const sentMessage = await hook.send(body, {
       embeds: [embed],
       username: message.author.username,
-      avatarURL: message.author.avatarURL,
+      avatarURL: message.author.avatarURL({ format: 'png', dynamic: true, size: 512 }),
     }).catch(errHander);
     // create DB entry for messageLink
     MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });

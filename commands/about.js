@@ -4,7 +4,7 @@ const fs = require('fs');
 function postMessage(client, message, body, error) {
   let color = 0;
   if (message.channel.type !== 'dm') color = message.member.displayColor;
-  client.functions.get('FUNC_richEmbedMessage')
+  client.functions.get('FUNC_MessageEmbedMessage')
     .run(client.user, message.channel, body, 'About: ', color, false);
 }
 
@@ -13,7 +13,7 @@ function postMessage(client, message, body, error) {
 // TODO: make errorlogchannel in server
 function error(client, channel, err) {
   console.error('ERROR: ', err);
-  client.functions.get('FUNC_richEmbedMessage')
+  client.functions.get('FUNC_MessageEmbedMessage')
     .run(client.user, channel, 'Oh no! Something went wrong. This error has been carefully recorded and our nerd is working on it to fix it. Please try again later.', '', 16449540, false);
 }
 

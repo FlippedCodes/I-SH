@@ -49,7 +49,7 @@ module.exports.run = async (client, message, config) => {
 
   allMessageIDs.forEach(async (entry) => {
     if (message.id === entry.messageID) return;
-    const channel = await client.channels.find((channel) => channel.id === entry.channelID);
+    const channel = await client.channels.cache.find((channel) => channel.id === entry.channelID);
     const targetMessage = await channel.fetchMessage(entry.messageID);
     if (!targetMessage.deleted && await checkDeletePermissions(targetMessage)) targetMessage.delete();
     else targetMessage.react('❌');

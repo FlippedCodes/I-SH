@@ -1,7 +1,7 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (client, message, args, config) => {
-  const embed = new RichEmbed().setTitle('Halp');
+  const embed = new MessageEmbed().setTitle('Halp');
   if (message.channel.type !== 'dm') embed.setColor(message.member.displayColor);
   // creating embed fields for every command
   client.commands.forEach((CMD) => {
