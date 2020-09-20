@@ -12,9 +12,10 @@ function createNewWebhook(config, channel) {
   channel.createWebhook(config.name).catch(errHander);
 }
 
-function createEmbed(message) {
-  const embed = new MessageEmbed().setDescription(message.channel.guild.name, message.channel.guild.iconURL);
-  return [message.content, embed];
+function createMessage(message) {
+  // const embed = new MessageEmbed().setDescription(message.channel.guild.name, message.channel.guild.iconURL);
+  // return [message.content, embed];
+  return `**_${message.channel.guild.name}_**\n${message.cleanContent}`;
 }
 
 module.exports.run = async (client, message, config) => {
@@ -39,9 +40,9 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    const [body, embed] = createEmbed(message);
-    const sentMessage = await hook.send(body, {
-      embeds: [embed],
+    // const [body, embed] = createMessage(message);
+    const sentMessage = await hook.send(createMessage(message), {
+      // embeds: [embed],
       username: message.author.username,
       avatarURL: message.author.avatarURL({ format: 'png', dynamic: true, size: 512 }),
     }).catch(errHander);
