@@ -1,10 +1,8 @@
 IN PROGRESS:
-- set up TOS - Tox
-- marketing - Tox (+ Phil)
+- attachment support
 
 TODO: 
 - message editing
-- attachment support
 - Implement new message style + add discord invite link
 - safer setting up (open ivite code = no gud)
 - check nsfw channels
@@ -14,12 +12,15 @@ TODO:
 - Server join blacklist
 - global comamnd user blacklist
 (- channel creator (for permission management))
-(-web interface)
+(-web interface (might be on different code))
 
 
 DONE: 
 - emoji support and custom emoji support
+- marketing - Tox (+ Phil)
+- Pinging and channel sharing
 
-CANCELED:
+DROPPED:
+- set up TOS
 - old style with bot messages
 - style switcher
