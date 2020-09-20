@@ -9,9 +9,13 @@ TODO:
 - safer setting up (open ivite code = no gud)
 - check nsfw channels
 - Telegram support
-- command and messaging banlist
+- messaging user blacklist
+- global messaging user blacklist
+- Server join blacklist
+- global comamnd user blacklist
 (- channel creator (for permission management))
 (-web interface)
+
 
 DONE: 
 - emoji support and custom emoji support
