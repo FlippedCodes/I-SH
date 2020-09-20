@@ -1,6 +1,6 @@
 {
     "name": "I-SH",
-    "prefix": "ä",
+    "prefix": "+",
     "setup": {
         "moduleFolders": {
             "functionsFolder": "functions",
