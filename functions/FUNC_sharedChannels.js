@@ -31,7 +31,8 @@ module.exports.run = async (client, message, config) => {
   // get all channels in hubID
   const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'], where: { hubID } }).catch(errHander);
   // create messageLink instance ID
-  const OrgMessageLink = await MessageLink.create({ messageInstanceID: message.id, messageID: message.id, channelID: message.channel.id });
+  // const OrgMessageLink = await MessageLink.create({ messageInstanceID: message.id, messageID: message.id, channelID: message.channel.id });
+  await MessageLink.create({ messageInstanceID: message.id, messageID: message.id, channelID: message.channel.id });
   // prepare messages beforehand to avoid API load
   const body = createMessage(message);
   const username = message.author.username;
