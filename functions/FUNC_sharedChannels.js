@@ -32,6 +32,10 @@ module.exports.run = async (client, message, config) => {
   const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'], where: { hubID } }).catch(errHander);
   // create messageLink instance ID
   const OrgMessageLink = await MessageLink.create({ messageInstanceID: message.id, messageID: message.id, channelID: message.channel.id });
+  // prepare messages beforehand to avoid API load
+  const body = createMessage(message);
+  const username = message.author.username;
+  const avatarURL = message.author.avatarURL({ format: 'png', dynamic: true, size: 512 });
   // post message in every channel besides original one
   allHubChannels.forEach(async (postChannel) => {
     const postChannelID = postChannel.channelID;
@@ -40,12 +44,7 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    // const [body, embed] = createMessage(message);
-    const sentMessage = await hook.send(createMessage(message), {
-      // embeds: [embed],
-      username: message.author.username,
-      avatarURL: message.author.avatarURL({ format: 'png', dynamic: true, size: 512 }),
-    }).catch(errHander);
+    const sentMessage = await hook.send(body, { username, avatarURL }).catch(errHander);
     // create DB entry for messageLink
     MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });
   });
