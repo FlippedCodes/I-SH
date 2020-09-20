@@ -36,6 +36,9 @@ module.exports.run = async (client, message, config) => {
   const body = createMessage(message);
   const username = message.author.username;
   const avatarURL = message.author.avatarURL({ format: 'png', dynamic: true, size: 512 });
+  // lookup if existing attachment
+  const files = [];
+  if (message.attachments.size > 0) message.attachments.forEach((file) => files.push(file.url));
   // post message in every channel besides original one
   allHubChannels.forEach(async (postChannel) => {
     const postChannelID = postChannel.channelID;
@@ -44,7 +47,7 @@ module.exports.run = async (client, message, config) => {
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
-    const sentMessage = await hook.send(body, { username, avatarURL }).catch(errHander);
+    const sentMessage = await hook.send(body, { username, avatarURL, files }).catch(errHander);
     // create DB entry for messageLink
     MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });
   });
