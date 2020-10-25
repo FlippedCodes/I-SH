@@ -6,7 +6,7 @@ const clean = (text) => {
 module.exports.run = async (client, message, args, config) => {
   const args_eval = message.content.split(' ').slice(1);
   if (message.author.id !== '172031697355800577') return message.react('❌');
-  if (message.content.indexOf('token') !== -1) return message.channel.send('Nice try...');
+  if (message.content.indexOf('discordToken') !== -1) return message.channel.send('Nice try...');
   try {
     const code = args_eval.join(' ');
     let evaled = eval(code);

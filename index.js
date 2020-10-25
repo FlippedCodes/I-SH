@@ -24,7 +24,7 @@ config.setup.startupFunctions.forEach((FCN) => {
 require('./database/SETUP_DBConnection');
 
 // Login the bot
-client.login(config.env.get('token'));
+client.login(config.env.get('discordToken'));
 
 // trigger on bot login
 client.on('ready', () => {

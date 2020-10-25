@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const testToken = '../config/config.json';
+const testdiscordToken = '../config/config.json';
 
 const config = require('../config/main.json');
 
@@ -10,7 +10,7 @@ let user;
 let password;
 let host;
 if (config.env.get('inDev')) {
-  const DBCredentials = require(testToken).development;
+  const DBCredentials = require(testdiscordToken).development;
   database = DBCredentials.database;
   user = DBCredentials.username;
   password = DBCredentials.password;

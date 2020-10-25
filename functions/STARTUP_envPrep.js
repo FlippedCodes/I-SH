@@ -1,15 +1,15 @@
-const testToken = './config/config.json';
+const testdiscordToken = './config/config.json';
 
 module.exports.run = async (client, fs, config) => {
   // setting inDev var
   console.log(`[${module.exports.help.name}] Setting environment variables...`);
-  if (fs.existsSync(testToken)) {
-    const token = require(`.${testToken}`).token;
+  if (fs.existsSync(testdiscordToken)) {
+    const discordToken = require(`.${testdiscordToken}`).discordToken;
     config.env.set('inDev', true);
-    config.env.set('token', token);
+    config.env.set('discordToken', discordToken);
   } else {
     config.env.set('inDev', false);
-    config.env.set('token', process.env.BotTokenISH);
+    config.env.set('discordToken', process.env.BotdiscordTokenISH);
   }
   console.log(`[${module.exports.help.name}] Environment variables set!`);
 };
