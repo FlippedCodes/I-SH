@@ -13,7 +13,8 @@
         ],
         "setupFunctions": [
             "SETUP_offlineStat",
-            "SETUP_status"
+            "SETUP_status",
+            "SETUP_telegramBot"
         ]
     },
     "maxAllowedHubs": 3,
