@@ -4,7 +4,7 @@ module.exports.run = async (client, fs, config) => {
   // setting inDev var
   console.log(`[${module.exports.help.name}] Setting environment variables...`);
   if (fs.existsSync(testToken)) {
-    const token = require(`.${testToken}`).token;
+    const token = require(`.${testToken}`).discordToken;
     config.env.set('inDev', true);
     config.env.set('token', token);
   } else {
