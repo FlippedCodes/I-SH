@@ -1,20 +1,20 @@
-DONE: 
+DONE:
+- user blacklist
+- "hub list" command
 
 IN PROGRESS:
+- Server join blacklist
 - safer setting up (open invite code = no gud)
-- hub settings
-  - user blacklist
-  - global messaging user blacklist
-  - Server join blacklist
-  - Server whitelist
-- Telegram support
 
 DROPPED:
 - Implement new message style + add discord invite link
 
 TODO: 
+- Server join whitelist
+- Telegram support
 - message editing
 - check nsfw channels
 - global command user blacklist
+- transfer hub to new owner
 (-web interface (that frontend might run somewhere else))
 (- Signal support)
