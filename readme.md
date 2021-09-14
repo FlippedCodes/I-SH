@@ -6,7 +6,7 @@
 
 ##### How do I get started with you?
 
-> Use `+help` to learn all the commands.
+> Use `ish!help` to learn all the commands.
 
 ##### I need some help
 
