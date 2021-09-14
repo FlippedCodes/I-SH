@@ -2,8 +2,6 @@
 const Discord = require('discord.js');
 // init Discord client
 const client = new Discord.Client({ disableMentions: 'everyone' });
-// init sequelize
-const sequelize = require('sequelize');
 // init filesystem
 const fs = require('fs');
 // init config
@@ -19,9 +17,6 @@ config.setup.startupFunctions.forEach((FCN) => {
   const INIT = require(`./functions/${FCN}.js`);
   INIT.run(client, fs, config);
 });
-
-// create conenction to DB
-require('./database/SETUP_DBConnection');
 
 // Login the bot
 client.login(config.env.get('discordToken'));
