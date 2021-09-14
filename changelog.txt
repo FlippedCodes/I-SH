@@ -7,13 +7,14 @@ IN PROGRESS:
   - global messaging user blacklist
   - Server join blacklist
   - Server whitelist
+- Telegram support
 
 DROPPED:
 - Implement new message style + add discord invite link
 
 TODO: 
-- Telegram support
 - message editing
 - check nsfw channels
 - global command user blacklist
 (-web interface (that frontend might run somewhere else))
+(- Signal support)
