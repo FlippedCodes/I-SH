@@ -11,7 +11,7 @@ module.exports.run = async (client, fs, config) => {
     config.env.set('telegramToken', telegramToken);
   } else {
     config.env.set('inDev', false);
-    config.env.set('discordToken', process.env.BotTokenISH);
+    config.env.set('discordToken', process.env.BotToken);
     config.env.set('telegramToken', process.env.BottelegramTokenISH);
   }
   console.log(`[${module.exports.help.name}] Environment variables set!`);

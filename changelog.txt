@@ -1,26 +1,21 @@
-IN PROGRESS:
+DONE: 
 - attachment support
+- Pinging and channel sharing
+
+IN PROGRESS:
+- hub settings
+  - user blacklist
+  - global messaging user blacklist
+  - Server join blacklist
+
+DROPPED:
+(- channel creator (for permission management))
 
 TODO: 
 - message editing
 - Implement new message style + add discord invite link
-- safer setting up (open ivite code = no gud)
+- safer setting up (open invite code = no gud)
 - check nsfw channels
 - Telegram support
-- messaging user blacklist
-- global messaging user blacklist
-- Server join blacklist
 - global comamnd user blacklist
-(- channel creator (for permission management))
-(-web interface (might be on different code))
-
-
-DONE: 
-- emoji support and custom emoji support
-- marketing - Tox (+ Phil)
-- Pinging and channel sharing
-
-DROPPED:
-- set up TOS
-- old style with bot messages
-- style switcher
+(-web interface (that frontend might run somewhere else))

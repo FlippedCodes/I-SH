@@ -15,7 +15,7 @@ function createNewWebhook(config, channel) {
 function createMessage(message) {
   // const embed = new MessageEmbed().setDescription(message.channel.guild.name, message.channel.guild.iconURL);
   // return [message.content, embed];
-  return `**_${message.channel.guild.name}_**\n${message.cleanContent}`;
+  return `**_${message.channel.guild.name}_**\n${message.content}`;
 }
 
 module.exports.run = async (client, message, config) => {
