@@ -11,13 +11,13 @@ function messageFail(client, message, body) {
 }
 
 module.exports.run = async (client, message, args, config) => {
+  const currentCMD = module.exports.help;
   const [subcmd] = args;
-  const commandValues = ['register', 'delete', 'list', 'join', 'leave', 'ban'];
+  const commandValues = currentCMD.usage.split('|');
   if (commandValues.includes(subcmd)) {
     client.functions.get(`CMD_hub_${subcmd}`)
       .run(client, message, args, config);
   } else {
-    const currentCMD = module.exports.help;
     messageFail(client, message, CommandUsage(config.prefix, currentCMD.name, currentCMD.usage));
   }
 };
