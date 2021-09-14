@@ -2,7 +2,7 @@ module.exports.run = async (client, message, args, config) => {
   // get subcmd from args
   const [subcmd, type, messageID, reason] = args;
   if (!messageID || !reason) {
-    return messageFail(client, message,
+    return messageFail(message,
       `Command usage: 
     \`\`\`${config.prefix}${module.exports.help.parent} ${subcmd} ${type || 'user'} ${messageID || 'MESSAGEID'} ${reason || 'REASON'}\`\`\``);
   }

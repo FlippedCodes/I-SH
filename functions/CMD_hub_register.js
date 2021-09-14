@@ -4,14 +4,8 @@ const errHander = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_richEmbedMessage')
     .run(client.user, message.channel, body, '', 4296754, false);
-}
-
-// creates a embed messagetemplate for failed actions
-function messageFail(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
-    .run(client.user, message.channel, body, '', 16449540, false);
 }
 
 // creates channel DB entry
@@ -24,26 +18,26 @@ async function createHub(hubName, ownerID, maxHubs) {
 
 module.exports.run = async (client, message, args, config) => {
   // check if in DM
-  if (message.channel.type !== 'dm') return messageFail(client, message, 'This command can only be used in DM!');
+  if (message.channel.type !== 'dm') return messageFail(message, 'This command can only be used in DM!');
   // get subcmd from args
   const [subcmd, checkHubName] = args;
   // check if hubname is present
   if (!checkHubName) {
-    return messageFail(client, message,
+    return messageFail(message,
       `Command usage: 
       \`\`\`${config.prefix}${module.exports.help.parent} ${subcmd} ${checkHubName || 'HUBNAME'}\`\`\``);
   }
 
   const hubName = args.join('_').slice(subcmd.length + 1);
   const fittedHubName = `${message.id}_${hubName}`;
-  if (fittedHubName.length > 50) return messageFail(client, message, 'Sorry, your hubname ist too long... Try something shorter.');
+  if (fittedHubName.length > 50) return messageFail(message, 'Sorry, your hubname ist too long... Try something shorter.');
   const created = await createHub(fittedHubName, message.author.id, config.maxAllowedHubs);
   if (created) {
     messageSuccess(client, message,
       `You created \`${hubName}\`!
       You can link with it by using \`${config.prefix}${module.exports.help.parent} join ${fittedHubName}\`.
       **Make sure you only give the hub name to servers that you want to invite.**`);
-  } else messageFail(client, message, `Your account already owns a maximum of ${config.maxAllowedHubs} hubs. You can't create more then that!`);
+  } else messageFail(message, `Your account already owns a maximum of ${config.maxAllowedHubs} hubs. You can't create more then that!`);
 };
 
 module.exports.help = {

@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args, config) => {
       return;
 
     default:
-      return messageFail(client, message,
+      return messageFail(message,
         `Command usage: 
         \`\`\`${config.prefix}${module.exports.help.parent} ${subcmd} ${type || 'user'} MESSAGEID REASON\`\`\``);
   }

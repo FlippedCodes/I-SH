@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 // Ping kickoff for bot latency
 function kickoff(client, message) {
-  const sendMessage = client.functions.get('FUNC_MessageEmbedMessage');
+  const sendMessage = client.functions.get('FUNC_richEmbedMessage');
   return sendMessage.run(client.user, message.channel, '📤 Ping...', null, null, false);
 }
 

@@ -17,5 +17,5 @@ module.exports.run = async (user, channel, body, title, color, footer) => {
 };
 
 module.exports.help = {
-  name: 'FUNC_MessageEmbedMessage',
+  name: 'FUNC_richEmbedMessage',
 };

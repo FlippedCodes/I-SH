@@ -4,12 +4,6 @@ function CommandUsage(prefix, cmdName, subcmd) {
     \`\`\`${prefix}${cmdName} ${subcmd}\`\`\``;
 }
 
-// creates a embed messagetemplate for failed actions
-function messageFail(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
-    .run(client.user, message.channel, body, '', 16449540, false);
-}
-
 module.exports.run = async (client, message, args, config) => {
   const currentCMD = module.exports.help;
   const [subcmd] = args;
@@ -18,7 +12,7 @@ module.exports.run = async (client, message, args, config) => {
     client.functions.get(`CMD_hub_${subcmd}`)
       .run(client, message, args, config);
   } else {
-    messageFail(client, message, CommandUsage(config.prefix, currentCMD.name, currentCMD.usage));
+    messageFail(message, CommandUsage(config.prefix, currentCMD.name, currentCMD.usage));
   }
 };
 
