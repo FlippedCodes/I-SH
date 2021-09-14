@@ -1,21 +1,19 @@
 DONE: 
-- attachment support
-- Pinging and channel sharing
 
 IN PROGRESS:
+- safer setting up (open invite code = no gud)
 - hub settings
   - user blacklist
   - global messaging user blacklist
   - Server join blacklist
+  - Server whitelist
 
 DROPPED:
-(- channel creator (for permission management))
+- Implement new message style + add discord invite link
 
 TODO: 
-- message editing
-- Implement new message style + add discord invite link
-- safer setting up (open invite code = no gud)
-- check nsfw channels
 - Telegram support
-- global comamnd user blacklist
+- message editing
+- check nsfw channels
+- global command user blacklist
 (-web interface (that frontend might run somewhere else))
