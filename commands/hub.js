@@ -25,6 +25,6 @@ module.exports.run = async (client, message, args, config) => {
 module.exports.help = {
   name: 'hub',
   title: 'Manage hub',
-  usage: 'register|delete|join|leave',
+  usage: 'register|delete|join|leave|list|ban',
   desc: 'Manage hubs and links between channels.',
 };
