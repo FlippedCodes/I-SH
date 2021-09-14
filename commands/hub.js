@@ -12,7 +12,7 @@ function messageFail(client, message, body) {
 
 module.exports.run = async (client, message, args, config) => {
   const [subcmd] = args;
-  const commandValues = ['register', 'delete', 'list', 'join', 'leave'];
+  const commandValues = ['register', 'delete', 'list', 'join', 'leave', 'ban'];
   if (commandValues.includes(subcmd)) {
     client.functions.get(`CMD_hub_${subcmd}`)
       .run(client, message, args, config);
