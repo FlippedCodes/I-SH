@@ -1,6 +1,7 @@
 DONE:
 - user blacklist
 - "hub list" command
+- **new command prefix "ish!"**
 
 IN PROGRESS:
 - Server join blacklist
