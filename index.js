@@ -27,9 +27,15 @@ require('./database/SETUP_DBConnection');
 client.login(config.env.get('discordToken'));
 
 // trigger on bot login
-client.on('ready', () => {
+client.on('ready', async () => {
   // confirm user logged in
-  console.log(`[${config.name}] Logged in as ${client.user.tag} serving ${client.guilds.size} Servers!`);
+  console.log(`[${config.name}] Logged in as ${client.user.tag} serving ${client.guilds.cache.size} Servers!`);
+
+  // setup tables
+  console.log('[DB] Syncing tables...');
+  await sequelize.sync();
+  await console.log('[DB] Done syncing!');
+
   // set bot player status
   config.setup.setupFunctions.forEach((FCN) => {
     client.functions.get(FCN).run(client, config);
