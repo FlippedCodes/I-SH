@@ -17,6 +17,9 @@ global.CmdBuilder = SlashCommandBuilder;
 client.commands = new Collection();
 client.functions = new Collection();
 
+// anouncing debug mode
+if (DEBUG) console.log(`[${config.name}] Bot is on Debug-Mode. Some functions are not going to be loaded.`);
+
 // import Functions and Commands
 config.setup.startupFunctions.forEach((FCN) => {
   const INIT = require(`./functions/${FCN}.js`);
