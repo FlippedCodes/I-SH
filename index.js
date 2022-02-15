@@ -43,7 +43,8 @@ client.on('message', (message) => { client.functions.get('EVENT_message').run(cl
 client.on('channelDelete', (channel) => { client.functions.get('EVENT_channelDelete').run(channel); });
 
 // trigger on guildDelete
-client.on('guildDelete', (guild) => { client.functions.get('EVENT_guildDelete').run(guild); });
+// FIXME: Startup error causing bot crashes
+// client.on('guildDelete', (guild) => { client.functions.get('EVENT_guildDelete').run(guild); });
 
 // trigger on deleted message with raw package
 client.on('raw', async (packet) => {
