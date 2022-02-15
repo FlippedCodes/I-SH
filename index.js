@@ -4,8 +4,6 @@ const { Client, Intents, Collection } = require('discord.js');
 const fs = require('fs');
 // init command builder
 const { SlashCommandBuilder } = require('@discordjs/builders');
-// init sequelize
-const sequelize = require('sequelize');
 // init Discord client
 global.client = new Client({ disableEveryone: true, intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
 // init config
@@ -16,9 +14,8 @@ global.DEBUG = process.env.NODE_ENV === 'development';
 global.CmdBuilder = SlashCommandBuilder;
 
 // create new collections in client and config
-client.functions = new Discord.Collection();
-client.commands = new Discord.Collection();
-config.env = new Discord.Collection();
+client.commands = new Collection();
+client.functions = new Collection();
 
 // import Functions and Commands
 config.setup.startupFunctions.forEach((FCN) => {
