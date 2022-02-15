@@ -3,15 +3,15 @@
   "version": "2.0.0",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^12.3.1",
-    "mysql2": "^2.2.2",
-    "pretty-ms": "^5.1.0",
-    "sequelize": "^5.22.3"
+    "discord.js": "^13.6.0",
+    "mysql2": "^2.3.3",
+    "pretty-ms": "^7.0.1",
+    "sequelize": "^6.16.1"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   },
   "scripts": {
     "start": "node index.js"
