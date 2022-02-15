@@ -43,13 +43,13 @@ client.on('ready', () => {
 });
 
 // trigger on new message
-client.on('message', (message) => { client.functions.get('EVENT_message').run(client, message, config); });
+client.on('message', (message) => client.functions.get('EVENT_message').run(client, message, config));
 
 // trigger on channelDeletion
-client.on('channelDelete', (channel) => { client.functions.get('EVENT_channelDelete').run(channel); });
+client.on('channelDelete', (channel) => client.functions.get('EVENT_channelDelete').run(channel));
 
 // trigger on guildDelete
-client.on('guildDelete', (guild) => { client.functions.get('EVENT_guildDelete').run(guild); });
+client.on('guildDelete', (guild) => client.functions.get('EVENT_guildDelete').run(guild));
 
 // trigger on deleted message with raw package
 client.on('raw', async (packet) => {
