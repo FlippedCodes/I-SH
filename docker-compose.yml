@@ -1,0 +1,35 @@
+version: '3.3'
+# TODO: fixup DB name and fill correct values once access to heroku can be made (env vars)
+services:
+  bot:
+    build:
+      context: ./
+    depends_on:
+      - db-iSH
+    restart: always
+    environment:
+      BotTokenAgentBlack: ${DISCORD_BOT_TOKEN}
+      DBHost: db-iSH
+      DBName: agentBlack
+      DBUsername: agentBlack
+      DBPassword: ${DB_PASSWORD}
+  db-iSH:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
+      MYSQL_DATABASE: agentBlack
+      MYSQL_USER: agentBlack
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+networks:
+  default:
+    external:
+      name: nginx_backend
+
+volumes:
+  db_data:
