@@ -1,14 +1,19 @@
 // init Discord
-const Discord = require('discord.js');
-// init Discord client
+const { Client, Intents, Collection } = require('discord.js');
+// init filesystem
+const fs = require('fs');
 // init command builder
 const { SlashCommandBuilder } = require('@discordjs/builders');
 // init sequelize
 const sequelize = require('sequelize');
-// init filesystem
-const fs = require('fs');
+// init Discord client
+global.client = new Client({ disableEveryone: true, intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
 // init config
-const config = require('./config/main.json');
+global.config = require('./config.json');
+
+global.DEBUG = process.env.NODE_ENV === 'development';
+
+global.CmdBuilder = SlashCommandBuilder;
 
 // create new collections in client and config
 client.functions = new Discord.Collection();
