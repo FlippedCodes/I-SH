@@ -44,6 +44,7 @@ module.exports.run = async (client, message, config) => {
     const postChannelID = postChannel.channelID;
     if (postChannelID === channelID) return;
     const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
+    if (!channel) return console.warn('Channel', postChannelID, 'not found');
     const channelWebhooks = await channel.fetchWebhooks();
     let hook = channelWebhooks.find((hook) => hook.name === config.name);
     if (!hook) hook = await channel.createWebhook(config.name).catch(errHander);
