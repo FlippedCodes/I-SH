@@ -1,5 +1,5 @@
-# get node version 10
-FROM node:10
+# get node version 11
+FROM node:11
 
 # Create app directory
 WORKDIR /usr/src/app
