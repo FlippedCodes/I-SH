@@ -10,5 +10,5 @@ module.exports.run = async () => {
 
 module.exports.data = {
   name: 'status',
-  callOn: '-',
+  callOn: 'setup',
 };
