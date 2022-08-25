@@ -6,7 +6,7 @@ function CommandUsage(prefix, cmdName, subcmd) {
 
 // creates a embed messagetemplate for failed actions
 function messageFail(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, '', 16449540, false);
 }
 

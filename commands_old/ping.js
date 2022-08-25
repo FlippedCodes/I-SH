@@ -1,8 +1,8 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 // Ping kickoff for bot latency
 function kickoff(client, message) {
-  const sendMessage = client.functions.get('FUNC_MessageEmbedMessage');
+  const sendMessage = client.functions.get('FUNC_EmbedBuilderMessage');
   return sendMessage.run(client.user, message.channel, '📤 Ping...', null, null, false);
 }
 
@@ -12,7 +12,7 @@ function editedMessage(sentMessage, message) {
   const body = `📥 Pong!
   Latency is \`${sentMessage.createdTimestamp - message.createdTimestamp}\`ms.
   API Latency is \`${api_latency}\`ms`;
-  return new MessageEmbed()
+  return new EmbedBuilder()
     .setDescription(body)
     .setColor();
 }

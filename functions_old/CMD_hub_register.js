@@ -4,13 +4,13 @@ const errHander = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, '', 4296754, false);
 }
 
 // creates a embed messagetemplate for failed actions
 function messageFail(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
+  client.functions.get('FUNC_EmbedBuilderMessage')
     .run(client.user, message.channel, body, '', 16449540, false);
 }
 
