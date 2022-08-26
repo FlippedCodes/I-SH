@@ -1,21 +1,17 @@
-DONE: 
-- attachment support
-- Pinging and channel sharing
+**Changelog:**
+__Bot update - 2.0.0 - Message out-App in!__
+New Stuff:
+As per request by Discord, to get a message intent:
+- The bot now has a reporting feature, to report any harmful messages
+- The bot now also has a short Privacy policy, sayin that we dont store any messages in the backend database. (duh)
 
-IN PROGRESS:
-- hub settings
-  - user blacklist
-  - global messaging user blacklist
-  - Server join blacklist
+Important Changes:
+- All commands have been moved to the all and new Slash-Commands:tm: (`/`)
 
-DROPPED:
-(- channel creator (for permission management))
+Boring Bug Fixes:
 
-TODO: 
-- message editing
-- Implement new message style + add discord invite link
-- safer setting up (open invite code = no gud)
-- check nsfw channels
-- Telegram support
-- global comamnd user blacklist
-(-web interface (that frontend might run somewhere else))
+
+Planned for the Future:
+- Hard mode: kick/ban everyone on global ban list; kick every unverified bot;...
+- Website and API
+- everything else
