@@ -1,0 +1,28 @@
+DONE: 
+- attachment support
+- Pinging and channel sharing
+
+IN PROGRESS:
+- hub settings
+  - user blacklist
+  - global messaging user blacklist
+  - Server join blacklist
+
+DROPPED:
+(- channel creator (for permission management))
+
+TODO: 
+- message editing
+- Implement new message style + add discord invite link
+- safer setting up (open invite code = no gud)
+- check nsfw channels
+- Telegram support
+- Guilded support
+- global comamnd user blacklist
+(-web interface (that frontend might run somewhere else))
+
+
+- Privacy policy
+- Snowflake storage = infinate
+- Dont store messages in DB
+- Create reporting system
