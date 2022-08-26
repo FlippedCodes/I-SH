@@ -1,19 +1,21 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const {
+  EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle,
+} = require('discord.js');
 
-const discardDeprecationWarning = require('../../database/models/discardDeprecationWarning');
+// const discardDeprecationWarning = require('../../database/models/discardDeprecationWarning');
 
-const buttons = new MessageActionRow()
+const buttons = new ActionRowBuilder()
   .addComponents([
-    new MessageButton()
+    new ButtonBuilder()
       .setCustomId('discard')
       .setEmoji('✅')
       .setLabel('Don\'t show this again')
-      .setStyle('PRIMARY'),
+      .setStyle(ButtonStyle.Primary),
   ]);
 
-const embed = (body) => new MessageEmbed()
+const embed = (body) => new EmbedBuilder()
   .setDescription(body)
-  .setColor('RED');
+  .setColor('Red');
 
 async function addUser(userID) {
   const added = await discardDeprecationWarning.findOrCreate({ where: { userID } }).catch(ERR);
@@ -37,7 +39,9 @@ module.exports.run = async (message) => {
 
   if (await checkUser(userID)) return;
 
-  const confirmMessage = await message.reply({ embeds: [embed('Hi there! I have been upgraded to Slash-Commands (v.3.0.0) and no longer support the old prefix of `a!` (Blame Discord). Please use the new `/` instead!')], components: [buttons], fetchReply: true });
+  const defaultBody = 'Hi there! I have been upgraded to Slash-Commands (v.2.0.0) and no longer support the old prefix of `+`. Please use the new `/` instead!';
+
+  const confirmMessage = await message.reply({ embeds: [embed(defaultBody)], components: [buttons], fetchReply: true });
   // For some reason that isnta-deletes the message?
   // await sentMessage.delete({ timeout: 20000 });
   // start button collector
@@ -53,7 +57,7 @@ module.exports.run = async (message) => {
     return confirmMessage.edit({ embeds: [embed('Unknown response')], components: [] });
   });
   buttonCollector.on('end', async (collected) => {
-    if (collected.size === 0) confirmMessage.edit({ embeds: [embed('Hi there! I have been upgraded to Slash-Commands (v.3.0.0) and no longer support the old prefix of `a!` (Blame Discord). Please use the new `/` instead!')], components: [] });
+    if (collected.size === 0) confirmMessage.edit({ embeds: [embed(defaultBody)], components: [] });
   });
 };
 
