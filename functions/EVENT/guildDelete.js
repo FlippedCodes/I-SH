@@ -1,4 +1,4 @@
-const ParticipatingServer = require('../../database/models/ParticipatingServer');
+// const ParticipatingServer = require('../../database/models/ParticipatingServer');
 
 // removes a server from the ParticipatingServers table
 async function removeServer(serverID) {
