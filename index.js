@@ -39,7 +39,7 @@ client.functions = new Collection();
 // anouncing debug mode
 if (DEBUG) console.log(`[${config.name}] Bot is on Debug-Mode. Some functions are not going to be loaded.`);
 
-client.login(process.env.DCtoken)
+client.login(process.env.discordToken)
   .then(() => {
     // import Functions and Commands; startup database connection
     fs.readdirSync('./functions/STARTUP').forEach((FCN) => {

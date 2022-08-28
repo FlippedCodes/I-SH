@@ -17,10 +17,10 @@ jobs:
     #     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     env:
+      discordToken: ${{ secrets.TOKEN_DISCORD }}
       DB_PORT: ${{ secrets.DB_PORT }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_PASSWORD_ROOT: ${{ secrets.DB_PASSWORD_ROOT }}
-      DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+      DBpassword: ${{ secrets.DB_PASSWORD }}
+      db_password_root: ${{ secrets.DB_PASSWORD_ROOT }}
 
     steps:
       - uses: actions/checkout@v2
@@ -35,6 +35,13 @@ jobs:
 
       - name: Build app
         run: docker-compose build
+
+      # - name: Spin up DB
+      # run: docker-compose up -d db
+
+      # - name: Update DB structure
+      #   run: npm i sequelize-cli
+      #   run: sequelize db:migrate
 
       # - name: Spin up all other containers
       - name: Spin up containers
