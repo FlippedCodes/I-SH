@@ -8,7 +8,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const intents = new IntentsBitField([
   IntentsBitField.Flags.Guilds,
   IntentsBitField.Flags.GuildMessages,
-  IntentsBitField.Flags.GuildMembers,
+  // IntentsBitField.Flags.GuildMembers,
   IntentsBitField.Flags.MessageContent,
 ]);
 // init Discord client
