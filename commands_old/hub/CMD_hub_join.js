@@ -2,7 +2,7 @@ const BridgedChannel = require('../database/models/bridgedChannel');
 
 const HubName = require('../database/models/hubName');
 
-const errHander = (err) => { console.error('ERROR:', err); };
+const ERR = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
@@ -18,18 +18,18 @@ function messageFail(client, message, body) {
 
 // gets hubID from DB
 async function getHubID(hubName) {
-  const result = await HubName.findOne({ attributes: ['hubID'], where: { hubName } }).catch(errHander);
+  const result = await HubName.findOne({ attributes: ['hubID'], where: { hubName } }).catch(ERR);
   if (result) return result.hubID;
   return null;
 }
 
 // creates channel DB entry
 async function createBridgedChannel(hubID, channelID, serverID) {
-  if (await BridgedChannel.findOne({ where: { channelID } }).catch(errHander)) return false;
-  if (await BridgedChannel.findOne({ where: { serverID, hubID } }).catch(errHander)) return false;
+  if (await BridgedChannel.findOne({ where: { channelID } }).catch(ERR)) return false;
+  if (await BridgedChannel.findOne({ where: { serverID, hubID } }).catch(ERR)) return false;
   const [bridgedChannel] = await BridgedChannel.findOrCreate({
     where: { channelID }, defaults: { serverID, hubID },
-  }).catch(errHander);
+  }).catch(ERR);
   return true;
 }
 

@@ -1,6 +1,6 @@
 const HubName = require('../database/models/hubName');
 
-const errHander = (err) => { console.error('ERROR:', err); };
+const ERR = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
@@ -16,9 +16,9 @@ function messageFail(client, message, body) {
 
 // creates channel DB entry
 async function createHub(hubName, ownerID, maxHubs) {
-  const result = await HubName.findAndCountAll({ where: { ownerID } }).catch(errHander);
+  const result = await HubName.findAndCountAll({ where: { ownerID } }).catch(ERR);
   if (result.count >= maxHubs) return false;
-  await HubName.create({ hubName, ownerID }).catch(errHander);
+  await HubName.create({ hubName, ownerID }).catch(ERR);
   return true;
 }
 
@@ -29,8 +29,7 @@ module.exports.run = async (client, message, args, config) => {
   const [subcmd, checkHubName] = args;
   // check if hubname is present
   if (!checkHubName) {
-    return messageFail(client, message,
-      `Command usage: 
+    return messageFail(client, message, `Command usage: 
       \`\`\`${config.prefix}${module.exports.help.parent} ${subcmd} ${checkHubName || 'HUBNAME'}\`\`\``);
   }
 
@@ -39,8 +38,7 @@ module.exports.run = async (client, message, args, config) => {
   if (fittedHubName.length > 50) return messageFail(client, message, 'Sorry, your hubname ist too long... Try something shorter.');
   const created = await createHub(fittedHubName, message.author.id, config.maxAllowedHubs);
   if (created) {
-    messageSuccess(client, message,
-      `You created \`${hubName}\`!
+    messageSuccess(client, message, `You created \`${hubName}\`!
       You can link with it by using \`${config.prefix}${module.exports.help.parent} join ${fittedHubName}\`.
       **Make sure you only give the hub name to servers that you want to invite.**`);
   } else messageFail(client, message, `Your account already owns a maximum of ${config.maxAllowedHubs} hubs. You can't create more then that!`);

@@ -4,7 +4,7 @@ const BridgedChannel = require('../database/models/bridgedChannel');
 
 const MessageLink = require('../database/models/messageLink');
 
-const errHander = (err) => { console.error('ERROR:', err); };
+const ERR = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
@@ -21,13 +21,13 @@ async function messageFail(client, message, body) {
 
 // count channel entrys
 async function countChannels(hubID) {
-  const result = await BridgedChannel.findAndCountAll({ where: { hubID } }).catch(errHander);
+  const result = await BridgedChannel.findAndCountAll({ where: { hubID } }).catch(ERR);
   return result.count;
 }
 
 // check for hubName and get hubID
 async function getHubID(hubName) {
-  const result = await HubName.findOne({ attributes: ['hubID', 'ownerID'], where: { hubName } }).catch(errHander);
+  const result = await HubName.findOne({ attributes: ['hubID', 'ownerID'], where: { hubName } }).catch(ERR);
   if (result) return [result.hubID, result.ownerID];
   return [null];
 }
@@ -67,10 +67,10 @@ module.exports.run = async (client, message, args, config) => {
         return messageSuccess(client, message, 'Crisis avoided! Your hub has not been deleted!');
       case '✅':
         // deleted channels and hub
-        // const deletedMessages = await MessageLink.destroy({ where: { hubID } }).catch(errHander);
-        // const deletedChannels = await BridgedChannel.destroy({ where: { hubID } }).catch(errHander);
-        await BridgedChannel.destroy({ where: { hubID } }).catch(errHander);
-        const deletedHub = await HubName.destroy({ where: { hubID } }).catch(errHander);
+        // const deletedMessages = await MessageLink.destroy({ where: { hubID } }).catch(ERR);
+        // const deletedChannels = await BridgedChannel.destroy({ where: { hubID } }).catch(ERR);
+        await BridgedChannel.destroy({ where: { hubID } }).catch(ERR);
+        const deletedHub = await HubName.destroy({ where: { hubID } }).catch(ERR);
 
         // FIXME: if there are no channels connected, the bot throws an error even if it was successful
         // if (deletedHub && deletedChannels) messageSuccess(client, message, 'Your hub has now been deleted!');

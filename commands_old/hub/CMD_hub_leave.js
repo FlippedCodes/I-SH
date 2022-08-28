@@ -1,6 +1,6 @@
 const BridgedChannel = require('../database/models/bridgedChannel');
 
-const errHander = (err) => { console.error('ERROR:', err); };
+const ERR = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
@@ -16,7 +16,7 @@ function messageFail(client, message, body) {
 
 // deletes channel entry from DB
 async function deleteChannel(channelID) {
-  const result = await BridgedChannel.destroy({ where: { channelID } }).catch(errHander);
+  const result = await BridgedChannel.destroy({ where: { channelID } }).catch(ERR);
   return result;
 }
 

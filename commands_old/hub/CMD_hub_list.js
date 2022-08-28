@@ -1,6 +1,6 @@
 const HubName = require('../database/models/hubName');
 
-const errHander = (err) => { console.error('ERROR:', err); };
+const ERR = (err) => { console.error('ERROR:', err); };
 
 // creates a embed messagetemplate for succeded actions
 function messageSuccess(client, message, body) {
@@ -16,7 +16,7 @@ function messageFail(client, message, body) {
 
 // gets hub names from DB
 async function getHubNames(ownerID) {
-  const result = await HubName.findAll({ attributes: ['hubName'], where: { ownerID } }).catch(errHander);
+  const result = await HubName.findAll({ attributes: ['hubName'], where: { ownerID } }).catch(ERR);
   if (result) return result;
   return null;
 }
