@@ -41,7 +41,7 @@ module.exports.run = async (interaction, HubName, BridgedChannel, hubnameStr) =>
   if (ownerID !== interaction.user.id) return messageFail(interaction, `You are not the owner of ${hubnameStr}.`);
 
   const message = await new EmbedBuilder()
-    .setDescription(`You are about to delete the hub **${hubnameStr}** with ${channelAmmount} connected channels which can't be undone! \nAre you sure?`)
+    .setDescription(`You are about to delete the hub **${hubnameStr}** with **${channelAmmount}** connected channels which can't be undone! \nAre you sure?`)
     .setColor('Orange');
   const confirmMessage = await reply(interaction, {
     embeds: [message], components: [buttons], fetchReply: true, ephemeral: true,
