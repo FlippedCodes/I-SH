@@ -35,7 +35,7 @@ module.exports.data = new CmdBuilder()
     .setDescription('Remove this channel from the hub'))
   .addSubcommand((SC) => SC
     .setName('delete')
-    .setDescription('Delete a hub and detry the link between all channels.')
+    .setDescription('Delete a hub and destroy the link between all channels.')
     .addStringOption((option) => option
       .setName('hubname')
       .setDescription('Give me your hub name.')
