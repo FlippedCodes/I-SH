@@ -1,5 +1,5 @@
 const {
-  EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType,
+  EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, PermissionsBitField,
 } = require('discord.js');
 
 const buttons = new ActionRowBuilder()
@@ -39,6 +39,17 @@ async function createBridgedChannel(BridgedChannel, hubID, channelID, serverID) 
 
 module.exports.run = async (interaction, HubName, BridgedChannel, hubnameStr) => {
   if (interaction.channel.type === ChannelType.DM) return messageFail(interaction, 'You can\'t link a DM channel!');
+
+  // check MANAGE_CHANNELS permissions
+  if (!interaction.memberPermissions.has(PermissionsBitField.Flags.ManageChannels)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName} join\` in this server.`);
+
+  const permissions = interaction.guild.members.me.permissionsIn(interaction.channel);
+  const ViewChannel = permissions.has(PermissionsBitField.Flags.ViewChannel);
+  const ManageMessages = permissions.has(PermissionsBitField.Flags.ManageMessages);
+  const ManageWebhooks = permissions.has(PermissionsBitField.Flags.ManageWebhooks);
+  const permissionMissing = `${!ViewChannel ? '\n• `View Channel`' : ''}${!ManageMessages ? '\n• `Manage Messages`' : ''}${!ManageWebhooks ? '\n• `Manage Webhooks`' : ''}`;
+  if (!(ViewChannel && ManageWebhooks)) return messageFail(interaction, `I'm missing the following permission(s) for this channel:${permissionMissing}\nPlease fix it and try again.`);
+
   // get hubID
   const hubID = await getHubID(HubName, hubnameStr);
   if (!hubID) return messageFail(interaction, `There is no hub named \`${hubnameStr}\`! But you can create one by using \`/${interaction.commandName} register\`.`);
