@@ -19,5 +19,5 @@ module.exports.run = async (interaction, body, title, color, footer, ephemeral) 
 };
 
 module.exports.data = {
-  name: 'richEmbedMessage',
+  name: 'EmbedBuilder',
 };
