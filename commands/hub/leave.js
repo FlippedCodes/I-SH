@@ -1,27 +1,22 @@
-// removes a server from the ParticipatingServers table
-async function removeServer(ParticipatingServer, serverID) {
-  const success = await ParticipatingServer.update(
-    { active: false },
-    { where: { serverID, active: true } },
-  )
-    .catch(ERR);
-  return success[0];
+const { ChannelType, PermissionsBitField } = require('discord.js');
+
+// deletes channel entry from DB
+async function deleteChannel(BridgedChannel, channelID) {
+  const result = await BridgedChannel.destroy({ where: { channelID } }).catch(ERR);
+  return result;
 }
 
-module.exports.run = async (interaction, ParticipatingServer) => {
-  // TODO: Check if in DMs
+module.exports.run = async (interaction, HubName, BridgedChannel) => {
+  if (interaction.channel.type === ChannelType.DM) return messageFail(interaction, 'You can\'t link a DM channel!');
 
+  // check MANAGE_CHANNELS permissions
+  if (!interaction.memberPermissions.has(PermissionsBitField.Flags.ManageChannels)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName} join\` in this server.`);
 
-  
-  const serverID = interaction.guildId;
-  const serverRemoved = await removeServer(ParticipatingServer, serverID);
-  if (serverRemoved >= 1) {
-    messageSuccess(interaction,
-      `The server with the ID \`${serverID}\` got disabled from the participating Servers list.`);
-  } else {
-    messageFail(interaction,
-      `The server with the ID \`${serverID}\` couldn't be found of the list.`);
-  }
+  // delete channel entry from database
+  const created = await deleteChannel(BridgedChannel, interaction.channel.id);
+  // check if channel entry is deleted and give feedback
+  if (created) messageSuccess(interaction, 'This channel is now no longer linked!');
+  else messageFail(interaction, 'This channel is not linked with any hub! You can\'t unlink it.');
 };
 
 module.exports.data = { subcommand: true };
