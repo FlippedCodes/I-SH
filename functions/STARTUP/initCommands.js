@@ -54,7 +54,8 @@ module.exports.run = async (fs) => {
       newCommand.name = `${command.name}_dev`;
       return newCommand;
     });
-    await client.application.commands.set(changedCommands, process.env.devGuild).catch(ERR);
+    await client.application.commands.set(changedCommands, process.env.devGuild1).catch(ERR);
+    await client.application.commands.set(changedCommands, process.env.devGuild2).catch(ERR);
   } else await client.application.commands.set(commandsSubmit).catch(ERR);
   console.log(`[${module.exports.data.name}] ${registerLength} command${registerLength !== 1 ? 's' : ''} registered!`);
 };
