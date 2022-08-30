@@ -4,12 +4,7 @@ const BridgedChannel = require('../database/models/bridgedChannel');
 
 module.exports.run = async (interaction) => {
   await interaction.deferReply({ ephemeral: true });
-  // check permissions
-  // WARN: TODO: Needs to be checked individually. as permissions are only added if adding a channel to a hub
-  // if (!await client.functions.get('CHECK_DB_perms').run(interaction.user.id)) {
-  //   messageFail(interaction, `You are not authorized to use \`/${module.exports.data.name}\``);
-  //   return;
-  // }
+
   const subName = interaction.options.getSubcommand(true);
   const hubnameStr = interaction.options.getString('hubname');
   client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, BridgedChannel, hubnameStr);
