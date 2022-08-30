@@ -14,16 +14,27 @@
             "SETUP_status"
         ]
     },
-    "maxAllowedHubs": 3,
-    "aboutText": "./readme.md",
     "logStatusChannel": "702551935051366471",
-    "messageLinkTime": 3600000,
     "functions": {
         "heartbeat": {
             "uptime": {
                 "interval": 50000,
                 "endpoint": "http://statuspage_app_sp_1:3001/api/push/"
             }
+        },
+        "messageGarbageCollection": {
+            "messageLinkTime": 15770000000
+        }
+    },
+    "commands": {
+        "about": {
+            "text": "./readme.md"
+        },
+        "changelog": {
+            "text": "./changelog.txt"
+        },
+        "hub": {
+            "maxAllowedHubs": 3
         }
     }
 }
