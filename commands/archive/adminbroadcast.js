@@ -1,8 +1,4 @@
-const bridgedChannel = require('../database/models/bridgedChannel');
-
-const ERR = (err) => {
-  console.error('ERROR:', err);
-};
+// const bridgedChannel = require('../../database/models/bridgedChannel');
 
 module.exports.run = async (client, message, args, config) => {
   if (message.author.id !== '172031697355800577') return message.react('❌');
