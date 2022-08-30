@@ -1,8 +1,8 @@
-const BridgedChannel = require('../database/models/bridgedChannel');
+const { PermissionsBitField } = require('discord.js');
 
-const MessageLink = require('../database/models/messageLink');
+const BridgedChannel = require('../../database/models/bridgedChannel');
 
-const ERR = (err) => { console.error('ERROR:', err); };
+const MessageLink = require('../../database/models/messageLink');
 
 async function checkChannel(channelID) {
   const result = await BridgedChannel.findOne({ attributes: ['channelID'], where: { channelID } }).catch(ERR);
@@ -34,13 +34,8 @@ async function getMessages(messageID) {
   return allMessageIDs;
 }
 
-async function checkDeletePermissions(message) {
-  const permissions = await message.client.functions.get('FUNC_checkPermissions').run(message.guild.me, message, 'MANAGE_MESSAGES');
-  return permissions;
-}
-
 // Deletes all messages in every channel, if its deleted in one
-module.exports.run = async (client, message, config) => {
+module.exports.run = async (message) => {
   // check if channel is part of service
   if (!await checkChannel(message.channel_id)) return;
 
@@ -51,9 +46,9 @@ module.exports.run = async (client, message, config) => {
     if (message.id === entry.messageID) return;
     const channel = await client.channels.cache.find((channel) => channel.id === entry.channelID);
     const targetMessage = await channel.messages.fetch(entry.messageID);
-    if (!targetMessage.deleted && await checkDeletePermissions(targetMessage)) targetMessage.delete();
-    else targetMessage.react('❌');
-    // if too many recation errors showing up --> Check for reaction permissions frist
+    if (targetMessage.deleted) return;
+    if (!channel.guild.members.me.permissionsIn(channel).has(PermissionsBitField.Flags.ManageMessages)) return;
+    targetMessage.delete();
   });
 };
 

@@ -14,7 +14,7 @@
             "SETUP_status"
         ]
     },
-    "logStatusChannel": "702551935051366471",
+    "logChannel": "702551935051366471",
     "functions": {
         "heartbeat": {
             "uptime": {

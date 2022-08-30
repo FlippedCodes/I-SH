@@ -62,6 +62,8 @@ module.exports.run = async (message) => {
     return;
   }
 
+  // // TODO: Get message intent to remove below return!
+  // return;
   client.functions.get('ENGINE_serverlink_sharedChannels').run(message);
 };
 

@@ -8,7 +8,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const intents = new IntentsBitField([
   IntentsBitField.Flags.Guilds,
   IntentsBitField.Flags.GuildMessages,
-  // IntentsBitField.Flags.GuildMembers,
   IntentsBitField.Flags.MessageContent,
 ]);
 // init Discord client
@@ -67,18 +66,18 @@ client.on('ready', async () => {
 // trigger on new message
 client.on('messageCreate', (message) => client.functions.get('EVENT_messageCreate').run(message));
 
-// // trigger on channelDeletion
-// client.on('channelDelete', (channel) => client.functions.get('EVENT_channelDelete').run(channel));
+// trigger on channelDeletion
+client.on('channelDelete', (channel) => client.functions.get('EVENT_channelDelete').run(channel));
 
-// // trigger on guildDelete
-// client.on('guildDelete', (guild) => client.functions.get('EVENT_guildDelete').run(guild));
+// trigger on guildDelete
+client.on('guildDelete', (guild) => client.functions.get('EVENT_guildDelete').run(guild));
 
-// // trigger on deleted message with raw package
-// client.on('raw', async (packet) => {
-//   if (packet.t === 'MESSAGE_DELETE' && packet.d.guild_id) {
-//     client.functions.get('EVENT_messageDelete').run(client, packet.d, config);
-//   }
-// });
+// trigger on deleted message with raw package
+client.on('raw', async (packet) => {
+  if (packet.t === 'MESSAGE_DELETE' && packet.d.guild_id) {
+    client.functions.get('EVENT_messageDelete').run(packet.d);
+  }
+});
 
 // itneraction is triggered (command, autocomplete, etc.)
 client.on('interactionCreate', (interaction) => client.functions.get('EVENT_interactionCreate').run(interaction));
