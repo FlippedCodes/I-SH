@@ -48,7 +48,7 @@ module.exports.run = async (interaction, HubName, BridgedChannel, hubnameStr) =>
   const ManageMessages = permissions.has(PermissionsBitField.Flags.ManageMessages);
   const ManageWebhooks = permissions.has(PermissionsBitField.Flags.ManageWebhooks);
   const permissionMissing = `${!ViewChannel ? '\n• `View Channel`' : ''}${!ManageMessages ? '\n• `Manage Messages`' : ''}${!ManageWebhooks ? '\n• `Manage Webhooks`' : ''}`;
-  if (!(ViewChannel && ManageWebhooks)) return messageFail(interaction, `I'm missing the following permission(s) for this channel:${permissionMissing}\nPlease fix it and try again.`);
+  if (!(ViewChannel && ManageWebhooks && ManageMessages)) return messageFail(interaction, `I'm missing the following permission(s) for this channel:${permissionMissing}\nPlease fix it and try again.`);
 
   // get hubID
   const hubID = await getHubID(HubName, hubnameStr);
