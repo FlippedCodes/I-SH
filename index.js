@@ -64,8 +64,8 @@ client.on('ready', async () => {
   });
 });
 
-// // trigger on new message
-// client.on('message', (message) => client.functions.get('EVENT_message').run(client, message, config));
+// trigger on new message
+client.on('messageCreate', (message) => client.functions.get('EVENT_messageCreate').run(message));
 
 // // trigger on channelDeletion
 // client.on('channelDelete', (channel) => client.functions.get('EVENT_channelDelete').run(channel));
