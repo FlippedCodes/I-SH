@@ -9,7 +9,7 @@ module.exports.run = () => {
     process.env.DBpassword,
     {
       host: process.env.DBhost,
-      dialect: 'mysql',
+      dialect: process.env.DBdialect,
       logging: DEBUG ? console.log() : false,
     },
   );

@@ -13,6 +13,7 @@ services:
       DBNameISH: ish
       DBUsernameISH: ish
       DBPasswISH: ${DBPasswISH}
+      DBdialect: mysql
   db-ish:
     image: mariadb:latest
     restart: always
