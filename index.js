@@ -8,7 +8,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const intents = new IntentsBitField([
   IntentsBitField.Flags.Guilds,
   IntentsBitField.Flags.GuildMessages,
-  IntentsBitField.Flags.MessageContent,
+  // IntentsBitField.Flags.MessageContent,
 ]);
 // init Discord client
 global.client = new Client({ disableEveryone: true, intents });
