@@ -1,17 +1,22 @@
 **Changelog:**
-__Bot update - 2.0.0 - Message out-App in!__
+__Bot update - 2.0.0 - Message out - Slash-Commands in!__
 New Stuff:
+- A command to bridge til we get message intent from discord: /send
 As per request by Discord, to get a message intent:
-- The bot now has a reporting feature, to report any harmful messages
-- The bot now also has a short Privacy policy, sayin that we dont store any messages in the backend database. (duh)
+- The bot now has a reporting feature, to report any harmful messages: /report
+- The bot now also has a short Privacy policy, saying that we don't store any messages in the backend database. (duh)
 
 Important Changes:
 - All commands have been moved to the all and new Slash-Commands:tm: (`/`)
+- Implemented new message style in preparation to add discord invites
+- Safer setup: no more code leaks from the bot! Amazing! (ephemeral messages)
 
 Boring Bug Fixes:
+- Moved bot to a new server, where there is more control, if something happens
 
 
 Planned for the Future:
-- Hard mode: kick/ban everyone on global ban list; kick every unverified bot;...
-- Website and API
-- everything else
+- add discord invite link
+- check nsfw channels
+- Telegram support
+- Guilded support
