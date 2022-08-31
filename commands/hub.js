@@ -1,30 +1,43 @@
-// prepares command usage message
-function CommandUsage(prefix, cmdName, subcmd) {
-  return `Command usage: 
-    \`\`\`${prefix}${cmdName} ${subcmd}\`\`\``;
-}
+const HubName = require('../database/models/hubName');
 
-// creates a embed messagetemplate for failed actions
-function messageFail(client, message, body) {
-  client.functions.get('FUNC_MessageEmbedMessage')
-    .run(client.user, message.channel, body, '', 16449540, false);
-}
+const BridgedChannel = require('../database/models/bridgedChannel');
 
-module.exports.run = async (client, message, args, config) => {
-  const [subcmd] = args;
-  const commandValues = ['register', 'delete', 'list', 'join', 'leave'];
-  if (commandValues.includes(subcmd)) {
-    client.functions.get(`CMD_hub_${subcmd}`)
-      .run(client, message, args, config);
-  } else {
-    const currentCMD = module.exports.help;
-    messageFail(client, message, CommandUsage(config.prefix, currentCMD.name, currentCMD.usage));
-  }
+module.exports.run = async (interaction) => {
+  await interaction.deferReply({ ephemeral: true });
+
+  const subName = interaction.options.getSubcommand(true);
+  const hubnameStr = interaction.options.getString('hubname');
+  client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, BridgedChannel, hubnameStr);
 };
 
-module.exports.help = {
-  name: 'hub',
-  title: 'Manage hub',
-  usage: 'register|delete|join|leave',
-  desc: 'Manage hubs and links between channels.',
-};
+module.exports.data = new CmdBuilder()
+  .setName('hub')
+  .setDescription('Manage your hubs.')
+  .addSubcommand((SC) => SC
+    .setName('register')
+    .setDescription('Add a new hub.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Tell me, what you want your hub to be called. This can\' be changed later.')
+      .setRequired(true)))
+  .addSubcommand((SC) => SC
+    .setName('list')
+    .setDescription('See all the hubs you own and what they are called.'))
+  .addSubcommand((SC) => SC
+    .setName('join')
+    .setDescription('Add this channel to a hub.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Give me your hub name.')
+      .setRequired(true)))
+  .addSubcommand((SC) => SC
+    .setName('leave')
+    .setDescription('Remove this channel from the hub'))
+  .addSubcommand((SC) => SC
+    .setName('delete')
+    .setDescription('Delete a hub and destroy the link between all channels.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Give me your hub name.')
+      .setAutocomplete(true)
+      .setRequired(true)));

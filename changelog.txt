@@ -1,21 +1,22 @@
-DONE: 
-- attachment support
-- Pinging and channel sharing
+**Changelog:**
+__Bot update - 2.0.0 - Message out - Slash-Commands in!__
+New Stuff:
+- A command to bridge til we get message intent from discord: /send
+As per request by Discord, to get a message intent:
+- The bot now has a reporting feature, to report any harmful messages: /report
+- The bot now also has a short Privacy policy, saying that we don't store any messages in the backend database. (duh)
 
-IN PROGRESS:
-- hub settings
-  - user blacklist
-  - global messaging user blacklist
-  - Server join blacklist
+Important Changes:
+- All commands have been moved to the all and new Slash-Commands:tm: (`/`)
+- Implemented new message style in preparation to add discord invites
+- Safer setup: no more code leaks from the bot! Amazing! (ephemeral messages)
 
-DROPPED:
-(- channel creator (for permission management))
+Boring Bug Fixes:
+- Moved bot to a new server, where there is more control, if something happens
 
-TODO: 
-- message editing
-- Implement new message style + add discord invite link
-- safer setting up (open invite code = no gud)
+Planned for the Future:
+- add discord invite link
 - check nsfw channels
 - Telegram support
-- global comamnd user blacklist
-(-web interface (that frontend might run somewhere else))
+- Guilded support
+- user and server blacklist

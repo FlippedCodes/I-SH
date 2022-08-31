@@ -1,23 +1,18 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
-module.exports.run = async (client, message, args, config) => {
-  const embed = new MessageEmbed().setTitle('Halp');
-  if (message.channel.type !== 'dm') embed.setColor(message.member.displayColor);
-  // creating embed fields for every command
-  client.commands.forEach((CMD) => {
-    if (!CMD.help.title) return;
-    embed.addField(CMD.help.title,
-      `\`${config.prefix}${CMD.help.name} ${CMD.help.usage || ''}\`
-      ${CMD.help.desc}`, false);
-  });
-  embed.addField('Need Help?', 'Join the help server here: https://discord.gg/7J2RKDR')
-    .setFooter(client.user.tag, client.user.displayAvatarURL)
-    .setTimestamp();
-  message.channel.send({ embed });
+module.exports.run = async (interaction) => {
+  const embed = new EmbedBuilder()
+    .setTitle('Halp')
+    .setColor('Green')
+    .setDescription('This command is deprecated, please use discord embedded slash-commands feature instead.')
+    .addFields([{
+      name: 'Still need help?',
+      value: `Read the wiki here: https://github.com/FlippedCodes/I-SH/wiki
+      or join our server here: https://discord.gg/p9fbBAjbnh`,
+    }]);
+  return reply(interaction, { embeds: [embed] });
 };
 
-module.exports.help = {
-  name: 'help',
-  title: 'Help',
-  desc: 'Shows this help of commans.',
-};
+module.exports.data = new CmdBuilder()
+  .setName('help')
+  .setDescription('Shows a list of commands. [Deprecated]');

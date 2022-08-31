@@ -1,0 +1,44 @@
+{
+    "name": "I-SH",
+    "setup": {
+        "moduleFolders": {
+            "functionsFolder": "functions",
+            "commandsFolder": "commands"
+        },
+        "startupFunctions": [
+            "STARTUP_initCommands",
+            "STARTUP_initFunctions",
+            "STARTUP_envPrep"
+        ],
+        "setupFunctions": [
+            "SETUP_status",
+            "SETUP_heartbeat"
+        ]
+    },
+    "logChannel": "702551935051366471",
+    "functions": {
+        "heartbeat": {
+            "uptime": {
+                "interval": 50000,
+                "endpoint": "http://statuspage_app_sp_1:3001/api/push/"
+            }
+        },
+        "messageGarbageCollection": {
+            "messageLinkTime": 15770000000
+        }
+    },
+    "commands": {
+        "about": {
+            "text": "./readme.md"
+        },
+        "changelog": {
+            "text": "./changelog.txt"
+        },
+        "hub": {
+            "maxAllowedHubs": 3
+        },
+        "report": {
+            "logChannel": "1014330474610565130"
+        }
+    }
+}

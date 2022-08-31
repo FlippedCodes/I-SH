@@ -1,17 +1,21 @@
 {
   "name": "i-sh",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^12.3.1",
-    "mysql2": "^2.2.2",
-    "pretty-ms": "^5.1.0",
-    "sequelize": "^5.22.3"
+    "@discordjs/builders": "^1.2.0",
+    "axios": "^0.27.2",
+    "bufferutil": "^4.0.6",
+    "discord.js": "^14.3.0",
+    "html-to-image": "^1.10.4",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.16.1",
+    "utf-8-validate": "^5.0.9"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   },
   "scripts": {
     "start": "node index.js"

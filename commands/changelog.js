@@ -1,21 +1,16 @@
 const fs = require('fs');
 
-const version = require('../package.json');
-
-module.exports.run = async (client, message, args, config, MessageEmbed, messageOwner, fa_token_A, fa_token_B) => {
-  fs.readFile('./changelog.txt', 'utf8', (err, data) => {
+module.exports.run = async (interaction) => {
+  fs.readFile(config.commands.changelog.text, 'utf8', (err, body) => {
     if (err) {
-      console.log(err);
-      message.react('❌');
+      ERR(err);
+      messageFail(interaction, 'Something went wrong, try again another time!');
       return;
     }
-    message.channel.send(`My current version is \`${version.version}\``);
-    message.channel.send(data);
+    messageSuccess(interaction, body, null, true);
   });
 };
 
-module.exports.help = {
-  name: 'changelog',
-  title: 'Changelog',
-  desc: 'Get the recent changes and upcomming features.',
-};
+module.exports.data = new CmdBuilder()
+  .setName('changelog')
+  .setDescription('Displays information about the most recent bot changes and what\'s to come.');
