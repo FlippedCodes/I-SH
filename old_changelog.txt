@@ -22,7 +22,7 @@ TODO:
 (-web interface (that frontend might run somewhere else))
 
 
-- Privacy policy
-- Snowflake storage = infinate
-- Dont store messages in DB
-- Create reporting system
+- Privacy policy -> Created and asked to accept on /hub join
+- Storage of snowflakes can be increased -> set to 6 months
+- Dont store messages in DB -> Never done
+- Create reporting system -> /report
