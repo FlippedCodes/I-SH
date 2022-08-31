@@ -42,7 +42,7 @@ module.exports.run = async (message) => {
     const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
     if (!channel) return console.warn('Channel', postChannelID, 'not found');
     const channelWebhooks = await channel.fetchWebhooks();
-    let hook = channelWebhooks.find((hook) => hook.name === config.name);
+    let hook = channelWebhooks.find((hook) => hook.owner.id === client.user.id);
     if (!hook) hook = await channel.createWebhook({ name: config.name }).catch(ERR);
     const sentMessage = await hook.send({
       content: message.content, components: [predoneButtons], username, avatarURL, files,

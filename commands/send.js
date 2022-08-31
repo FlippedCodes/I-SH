@@ -45,7 +45,7 @@ module.exports.run = async (interaction) => {
     const postChannelID = postChannel.channelID;
     const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
     const channelWebhooks = await channel.fetchWebhooks();
-    let hook = channelWebhooks.find((hook) => hook.name === config.name);
+    let hook = channelWebhooks.find((hook) => hook.owner.id === client.user.id);
     if (!hook) hook = await channel.createWebhook({ name: config.name }).catch(ERR);
     const sentMessage = await hook.send({
       content, components: [predoneButtons], username, avatarURL,
