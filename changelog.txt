@@ -9,11 +9,11 @@ As per request by Discord, to get a message intent:
 Important Changes:
 - All commands have been moved to the all and new Slash-Commands:tm: (`/`)
 - Implemented new message style in preparation to add discord invites
-- Safer setup: no more code leaks from the bot! Amazing! (ephemeral messages)
+- Safer setup: no more invite leaks while setting up! Amazing! (ephemeral messages)
 
 Boring Bug Fixes:
 - Moved bot to a new server, where there is more control, if something happens
-- Better webhook finding
+- Better webhook handler
 
 Planned for the Future:
 - add discord invite link
