@@ -10,7 +10,7 @@ const buttons = (servername) => new ActionRowBuilder()
   .addComponents([
     new ButtonBuilder()
       .setCustomId('servername')
-      .setLabel(servername)
+      .setLabel(servername.length >= 80 ? `${servername.slice(0, 76)}...` : servername)
       .setDisabled(true)
       .setStyle(ButtonStyle.Secondary),
   ]);
