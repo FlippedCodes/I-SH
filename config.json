@@ -11,7 +11,8 @@
             "STARTUP_envPrep"
         ],
         "setupFunctions": [
-            "SETUP_status"
+            "SETUP_status",
+            "SETUP_heartbeat"
         ]
     },
     "logChannel": "702551935051366471",
@@ -35,6 +36,9 @@
         },
         "hub": {
             "maxAllowedHubs": 3
+        },
+        "report": {
+            "logChannel": "1014330474610565130"
         }
     }
 }
