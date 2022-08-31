@@ -1,13 +1,15 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports.run = async (interaction) => {
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setTitle('Halp')
-    .setColor(interaction.member.displayColor)
+    .setColor('Green')
     .setDescription('This command is deprecated, please use discord embedded slash-commands feature instead.')
-    .addField('Still need help?', `
-  Read the wiki here: https://github.com/FlippedCodes/I-SH/wiki
-  or join our server here: https://discord.gg/p9fbBAjbnh`);
+    .addFields([{
+      name: 'Still need help?',
+      value: `Read the wiki here: https://github.com/FlippedCodes/I-SH/wiki
+      or join our server here: https://discord.gg/p9fbBAjbnh`,
+    }]);
   return reply(interaction, { embeds: [embed] });
 };
 
