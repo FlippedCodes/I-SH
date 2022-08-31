@@ -14,9 +14,9 @@ Important Changes:
 Boring Bug Fixes:
 - Moved bot to a new server, where there is more control, if something happens
 
-
 Planned for the Future:
 - add discord invite link
 - check nsfw channels
 - Telegram support
 - Guilded support
+- user and server blacklist
