@@ -25,7 +25,7 @@ module.exports.run = async (interaction) => {
   allHubChannels.forEach(async (postChannel) => {
     const channel = client.channels.cache.find((channel) => channel.id === postChannel.channelID);
     const channelWebhooks = await channel.fetchWebhooks();
-    let hook = channelWebhooks.find((hook) => hook.name === config.name);
+    let hook = channelWebhooks.find((hook) => hook.owner.id === client.user.id);
     if (!hook) hook = await channel.createWebhook({ name: config.name }).catch(ERR);
     await hook.send({
       content: body, components: [button], username, avatarURL,
