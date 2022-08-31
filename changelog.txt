@@ -1,5 +1,5 @@
 **Changelog:**
-__Bot update - 2.0.0 - Message out - Slash-Commands in!__
+__Bot update - 2.0.1 - Message out - Slash-Commands in!__
 New Stuff:
 - A command to bridge til we get message intent from discord: /send
 As per request by Discord, to get a message intent:
@@ -13,6 +13,7 @@ Important Changes:
 
 Boring Bug Fixes:
 - Moved bot to a new server, where there is more control, if something happens
+- Better webhook finding
 
 Planned for the Future:
 - add discord invite link
