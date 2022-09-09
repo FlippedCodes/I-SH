@@ -1,10 +1,10 @@
+const { ActivityType } = require('discord.js');
+
 module.exports.run = async () => {
-  if (DEBUG) return;
+  // if (DEBUG) return;
   console.log(`[${module.exports.data.name}] Setting status...`);
-  await client.user.setStatus('online');
-  const servercount = await client.guilds.cache.length;
-  // TODO: update activity message
-  await client.user.setActivity(`for messages in ${servercount} servers! | +help`, { type: 'LISTENING' });
+  const servercount = await client.guilds.cache.size;
+  await client.user.setActivity(`for messages in ${servercount} servers!`, { type: ActivityType.Listening });
   console.log(`[${module.exports.data.name}] Status set!`);
 };
 
