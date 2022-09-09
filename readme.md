@@ -1,21 +1,26 @@
-[comment]: <> (This bot links channels from different servers together.)
+<!--
+Demo https://www.youtube.com/watch?v=lsbk-TlyO1Y
+-->
 
-#### General
+# Inter-Server Hub
 
-> This bot links channels from different servers together.
+## General
 
-##### How do I get started with you?
+> This bot links channels from multiple Discord servers together.
 
-> Use `+help` to learn all the commands.
+## How do I get started with you?
 
-##### I need some help
+> Get started with creating a hub by using `/hub register`.
+> You can also check out this [wiki article](https://github.com/FlippedCodes/I-SH/wiki/Getting-Started), on how to get started with the bot. ^^
 
-> I've got you covered. Join our [help server](https://discord.gg/BvSzxqH)!
+## I need some help
 
-#### The Future
+> I've got you covered. Join our [help Discord](https://discord.gg/BvSzxqH)!
 
-> The is really early in its creation. That's why its so empty here >.> But we are going to improve it and add more features soon™.
+## The Future
 
-##### Source Code
+> Int he future I-SH will get compatibilty with other platforms, like Telegram and Guilded.
 
-> Feel free to look at my [GitHub](https://github.com/FlipperLP/I-SH/)!
+## Source Code
+
+> Feel free to look at it on [GitHub](https://github.com/FlippedCodes/I-SH)!
