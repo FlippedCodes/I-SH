@@ -1,7 +1,7 @@
 const { ActivityType } = require('discord.js');
 
 module.exports.run = async () => {
-  // if (DEBUG) return;
+  if (DEBUG) return;
   console.log(`[${module.exports.data.name}] Setting status...`);
   const servercount = await client.guilds.cache.size;
   await client.user.setActivity(`messages in ${servercount} servers!`, { type: ActivityType.Listening });
