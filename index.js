@@ -48,18 +48,20 @@ client.login(process.env.discordToken)
     });
   });
 
-client.on('ready', async () => {
-  // confirm user logged in
-  console.log(`[${config.name}] Logged in as "${client.user.tag}"!`);
-
+client.once('ready', async () => {
   // setup tables
   console.log('[DB] Syncing tables...');
   await sequelize.sync();
   await console.log('[DB] Done syncing!');
+});
+
+client.on('ready', async () => {
+  // confirm user logged in
+  console.log(`[${config.name}] Logged in as "${client.user.tag}"!`);
 
   // run startup functions
   config.setup.setupFunctions.forEach((FCN) => {
-    client.functions.get(FCN).run(client, config);
+    client.functions.get(FCN).run();
   });
 });
 
