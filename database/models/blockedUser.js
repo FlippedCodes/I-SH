@@ -1,10 +1,13 @@
 const Sequelize = require('sequelize');
 
-module.exports = sequelize.define('bannedUser', {
+module.exports = sequelize.define('blockedUser', {
   userID: {
     type: Sequelize.STRING(30),
     primaryKey: true,
-    autoIncrement: true,
+  },
+  hubID: {
+    type: Sequelize.INTEGER(11),
+    allowNull: false,
   },
   reason: Sequelize.TEXT,
 });
