@@ -6,7 +6,8 @@ async function createHub(HubName, name, ownerID, maxHubs) {
   return true;
 }
 
-module.exports.run = async (interaction, HubName, BridgedChannel, hubnameStr) => {
+module.exports.run = async (interaction, HubName) => {
+  const hubnameStr = interaction.options.getString('hubname');
   const hubName = hubnameStr.replaceAll(' ', '_');
   const fittedHubName = `${interaction.id}_${hubName}`;
   if (fittedHubName.length > 50) return messageFail(interaction, 'Sorry, your hubname ist too long... Try something shorter.');

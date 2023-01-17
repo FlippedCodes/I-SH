@@ -37,8 +37,10 @@ async function createBridgedChannel(BridgedChannel, hubID, channelID, serverID) 
   return true;
 }
 
-module.exports.run = async (interaction, HubName, BridgedChannel, hubnameStr) => {
+module.exports.run = async (interaction, HubName, BridgedChannel) => {
   if (interaction.channel.type === ChannelType.DM) return messageFail(interaction, 'You can\'t link a DM channel!');
+
+  const hubnameStr = interaction.options.getString('hubname');
 
   // check MANAGE_CHANNELS permissions
   if (!interaction.memberPermissions.has(PermissionsBitField.Flags.ManageChannels)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName} join\` in this server.`);

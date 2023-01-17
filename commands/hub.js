@@ -6,8 +6,7 @@ module.exports.run = async (interaction) => {
   await interaction.deferReply({ ephemeral: true });
 
   const subName = interaction.options.getSubcommand(true);
-  const hubnameStr = interaction.options.getString('hubname');
-  client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, BridgedChannel, hubnameStr);
+  client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, BridgedChannel);
 };
 
 module.exports.data = new CmdBuilder()
