@@ -3,6 +3,7 @@ __Bot update - 2.1.0 - Permissions!__
 New Stuff:
 - Rename command (/hub rename)
 - Transfer command (/hub transfer)
+- Allow invites command (/allowinvites)
 
 Important Changes:
 - Old command deprecation warning has been removed.

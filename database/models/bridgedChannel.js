@@ -19,6 +19,10 @@ module.exports = sequelize.define(
         model: 'hubnames',
         key: 'hubID',
       },
+    allowInvites: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   {
