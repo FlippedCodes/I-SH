@@ -45,6 +45,18 @@ module.exports.data = new CmdBuilder()
       .setDescription('Write down, how the new hub should be called.')
       .setRequired(true)))
   .addSubcommand((SC) => SC
+    .setName('transfer')
+    .setDescription('Transfer a hub to a new owner.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Give me your hub name.')
+      .setAutocomplete(true)
+      .setRequired(true))
+    .addUserOption((option) => option
+      .setName('user')
+      .setDescription('Select the user you want to transfer the hub to.')
+      .setRequired(true)))
+  .addSubcommand((SC) => SC
     .setName('delete')
     .setDescription('Delete a hub and destroy the link between all channels.')
     .addStringOption((option) => option

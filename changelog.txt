@@ -2,6 +2,7 @@
 __Bot update - 2.1.0 - Permissions!__
 New Stuff:
 - Rename command (/hub rename)
+- Transfer command (/hub transfer)
 
 Important Changes:
 - Old command deprecation warning has been removed.
