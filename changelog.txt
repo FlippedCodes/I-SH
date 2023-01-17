@@ -1,19 +1,13 @@
 **Changelog:**
-__Bot update - 2.0.1 - Message out - Slash-Commands in!__
+__Bot update - 2.1.0 - Permissions!__
 New Stuff:
-- A command to bridge til we get message intent from discord: /send
-As per request by Discord, to get a message intent:
-- The bot now has a reporting feature, to report any harmful messages: /report
-- The bot now also has a short Privacy policy, saying that we don't store any messages in the backend database. (duh)
+- 
 
 Important Changes:
-- All commands have been moved to the all and new Slash-Commands:tm: (`/`)
-- Implemented new message style in preparation to add discord invites
-- Safer setup: no more invite leaks while setting up! Amazing! (ephemeral messages)
+- Old command deprecation warning has been removed.
 
 Boring Bug Fixes:
-- Moved bot to a new server, where there is more control, if something happens
-- Better webhook handler
+- 
 
 Planned for the Future:
 - add discord invite link
