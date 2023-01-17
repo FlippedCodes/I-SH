@@ -46,4 +46,4 @@ jobs:
 
       # - name: Spin up all other containers
       - name: Spin up containers
-        run: docker-compose down
+        run: docker-compose down -v
