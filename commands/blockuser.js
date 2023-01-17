@@ -1,3 +1,5 @@
+const { PermissionsBitField } = require('discord.js');
+
 const HubName = require('../database/models/hubName');
 
 const BridgedChannel = require('../database/models/bridgedChannel');
@@ -7,10 +9,13 @@ const BlockedUser = require('../database/models/blockedUser');
 module.exports.run = async (interaction) => {
   await interaction.deferReply({ ephemeral: true });
 
+  // check MANAGE_CHANNELS permissions
+  if (!interaction.memberPermissions.has(PermissionsBitField.Flags.ManageChannels)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName}\` in this server.`);
+
   const subName = interaction.options.getSubcommand(true);
   const user = interaction.options.getUser('user', true);
   const hubID = await BridgedChannel.findOne({ attributes: ['hubID'], where: { channelID: interaction.channel.id } }).catch(ERR);
-  if (!hubID) return messageFail(interaction, 'This channel is not a hub channel.');
+  if (!hubID) return messageFail(interaction, 'This channel is not part of a hub.');
   // TODO: check user permissions
 
   client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, user, BlockedUser, hubID);
