@@ -8,10 +8,10 @@ module.exports.run = async (interaction) => {
   await interaction.deferReply({ ephemeral: true });
 
   const subName = interaction.options.getSubcommand(true);
-  // FIXME: user is null
-  const user = interaction.options.getUser(true);
+  const user = interaction.options.getUser('user', true);
   const hubID = await BridgedChannel.findOne({ attributes: ['hubID'], where: { channelID: interaction.channel.id } }).catch(ERR);
   if (!hubID) return messageFail(interaction, 'This channel is not a hub channel.');
+  // TODO: check user permissions
 
   client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, user, BlockedUser, hubID);
 };
