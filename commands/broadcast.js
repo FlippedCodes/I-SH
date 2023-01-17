@@ -34,12 +34,6 @@ module.exports.run = async (interaction) => {
   messageSuccess(interaction, 'Sending your message to all channels.');
 };
 
-module.exports.help = {
-  name: 'broadcast',
-  usage: 'MESSAGE',
-  desc: 'Notify every channel. [ADMINISTRATOR ONLY]',
-};
-
 module.exports.data = new CmdBuilder()
   .setName('broadcast')
   .setDescription('Broadcasts a message to all channels. [OWNER ONLY].')
