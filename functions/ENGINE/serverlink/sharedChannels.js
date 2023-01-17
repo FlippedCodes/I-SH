@@ -7,6 +7,7 @@ const bridgedChannel = require('../../../database/models/bridgedChannel');
 const MessageLink = require('../../../database/models/messageLink');
 
 const buttons = (servername) => new ActionRowBuilder()
+  // TODO: implement secound function, dont bother implementing into existing one
   .addComponents([
     new ButtonBuilder()
       .setCustomId('servername')
@@ -16,6 +17,7 @@ const buttons = (servername) => new ActionRowBuilder()
   ]);
 
 module.exports.run = async (message) => {
+  // TODO: attach invite, if setting is on
   // get channelID
   const channelID = message.channel.id;
   // check if channelID is part of i-sh: get hubID
