@@ -32,6 +32,10 @@ module.exports.data = new CmdBuilder()
     .addUserOption((option) => option
       .setName('user')
       .setDescription('Give me the user in question.')
+      .setRequired(true))
+    .addStringOption((option) => option
+      .setName('reason')
+      .setDescription('The reason will be visible to the user.')
       .setRequired(true)))
   .addSubcommand((SC) => SC
     .setName('pardon')
