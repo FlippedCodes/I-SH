@@ -1,7 +1,7 @@
 **Changelog:**
 __Bot update - 2.1.0 - Permissions!__
 New Stuff:
-- 
+- Rename command (/hub rename)
 
 Important Changes:
 - Old command deprecation warning has been removed.

@@ -18,7 +18,7 @@ module.exports.data = new CmdBuilder()
     .setDescription('Add a new hub.')
     .addStringOption((option) => option
       .setName('hubname')
-      .setDescription('Tell me, what you want your hub to be called. This can\' be changed later.')
+      .setDescription('Tell me, what you want your hub to be called.')
       .setRequired(true)))
   .addSubcommand((SC) => SC
     .setName('list')
@@ -33,6 +33,18 @@ module.exports.data = new CmdBuilder()
   .addSubcommand((SC) => SC
     .setName('leave')
     .setDescription('Remove this channel from the hub'))
+  .addSubcommand((SC) => SC
+    .setName('rename')
+    .setDescription('Rename a existing hub.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Tell me, which hub you want to rename.')
+      .setAutocomplete(true)
+      .setRequired(true))
+    .addStringOption((option) => option
+      .setName('newhubname')
+      .setDescription('Write down, how the new hub should be called.')
+      .setRequired(true)))
   .addSubcommand((SC) => SC
     .setName('delete')
     .setDescription('Delete a hub and destroy the link between all channels.')
