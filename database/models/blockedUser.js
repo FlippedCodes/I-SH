@@ -10,4 +10,8 @@ module.exports = sequelize.define('blockedUser', {
     allowNull: false,
   },
   reason: Sequelize.TEXT,
+  acknowledged: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 });
