@@ -9,9 +9,13 @@ module.exports = sequelize.define('blockedUser', {
     type: Sequelize.INTEGER(11),
     allowNull: false,
   },
-  reason: Sequelize.TEXT,
+  reason: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+  },
   acknowledged: {
     type: Sequelize.BOOLEAN,
+    allowNull: false,
     defaultValue: false,
   },
 });
