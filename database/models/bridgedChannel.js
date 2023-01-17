@@ -15,10 +15,7 @@ module.exports = sequelize.define(
     hubID: {
       type: Sequelize.INTEGER(11),
       allowNull: false,
-      references: {
-        model: 'hubnames',
-        key: 'hubID',
-      },
+    },
     allowInvites: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
