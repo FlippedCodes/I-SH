@@ -27,10 +27,5 @@ services:
       MYSQL_USER: ish
       MYSQL_PASSWORD: ${DBpassword}
 
-networks:
-  default:
-    external:
-      name: nginx_backend
-
 volumes:
   db_data:
