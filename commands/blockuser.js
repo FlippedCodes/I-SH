@@ -36,7 +36,7 @@ module.exports.data = new CmdBuilder()
     .setDescription('See all the users that are blocked from this guild.'))
   .addSubcommand((SC) => SC
     .setName('add')
-    .setDescription('Add this channel to a hub.')
+    .setDescription('Block a user from this guild.')
     .addUserOption((option) => option
       .setName('user')
       .setDescription('Give me the user in question.')
