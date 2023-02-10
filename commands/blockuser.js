@@ -46,7 +46,7 @@ module.exports.data = new CmdBuilder()
       .setDescription('The reason will be visible to the user.')
       .setRequired(true)))
   .addSubcommand((SC) => SC
-    .setName('pardon')
+    .setName('remove')
     .setDescription('Remove the block from a user.')
     .addUserOption((option) => option
       .setName('user')
