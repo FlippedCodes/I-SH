@@ -1,5 +1,5 @@
 **Changelog:**
-__Bot update - 2.1.0 - Permissions, Management and Invites!__
+__Bot update - 2.1.0 - Permissions, Management and Discord Invites!__
 New Stuff:
 - Rename command (/hub rename)
 - Transfer command (/hub transfer)
@@ -8,6 +8,7 @@ New Stuff:
 
 Important Changes:
 - Old command-prefix deprecation warning has been removed.
+- Announce when a new guild joins a hub.
 
 Boring Bug Fixes:
 - 

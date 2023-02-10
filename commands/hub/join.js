@@ -37,6 +37,20 @@ async function createBridgedChannel(BridgedChannel, hubID, channelID, serverID) 
   return true;
 }
 
+async function postJoinMessage(interaction, bridgedChannel, hubID) {
+  // get all channels in hubID
+  const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'], where: { hubID } }).catch(ERR);
+  // post message in every channel besides original one
+  allHubChannels.forEach(async (postChannel) => {
+    const postChannelID = postChannel.channelID;
+    if (postChannelID === interaction.channel.id) return;
+    const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
+    if (!channel) return console.warn('Channel', postChannelID, 'not found');
+    const serverName = interaction.guild.name;
+    channel.send(`Welcome the guild "${serverName}" to this hub!`);
+  });
+}
+
 module.exports.run = async (interaction, HubName, BridgedChannel) => {
   if (interaction.channel.type === ChannelType.DM) return messageFail(interaction, 'You can\'t link a DM channel!');
 
@@ -72,6 +86,7 @@ module.exports.run = async (interaction, HubName, BridgedChannel) => {
 
       if (!created) message.setDescription(`A channel in this server is already linked with \`${hubnameStr}\`! Try unlinking it first by using \`/${interaction.commandName} leave\`.`);
       else {
+        postJoinMessage(interaction, BridgedChannel, hubID);
         message
           .setDescription(`All good to go! This channel is now linked with \`${hubnameStr}\`.`)
           .setColor('Green');
