@@ -5,6 +5,7 @@ New Stuff:
 - Transfer command (/hub transfer)
 - Guild kick command (/hub kick)
 - Allow invites command (/allowinvites)
+- Block users from your guild (/blockuser)
 
 Important Changes:
 - Old command-prefix deprecation warning has been removed.

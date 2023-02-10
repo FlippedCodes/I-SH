@@ -32,7 +32,10 @@ module.exports.data = new CmdBuilder()
       .setDescription('Give me the user in question.')
       .setRequired(true)))
   .addSubcommand((SC) => SC
-    .setName('block')
+    .setName('list')
+    .setDescription('See all the users that are blocked from this guild.'))
+  .addSubcommand((SC) => SC
+    .setName('add')
     .setDescription('Add this channel to a hub.')
     .addUserOption((option) => option
       .setName('user')
