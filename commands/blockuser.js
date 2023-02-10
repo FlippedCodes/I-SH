@@ -23,7 +23,7 @@ module.exports.run = async (interaction) => {
 
 module.exports.data = new CmdBuilder()
   .setName('blockuser')
-  .setDescription('Manage blocked users.')
+  .setDescription('Manage blocked users from this guild.')
   .addSubcommand((SC) => SC
     .setName('search')
     .setDescription('Check, if a user is blocked from using this hub.')
