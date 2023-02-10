@@ -23,6 +23,14 @@ module.exports.data = new CmdBuilder()
     .setName('list')
     .setDescription('See all the hubs you own and what they are called.'))
   .addSubcommand((SC) => SC
+    .setName('listservers')
+    .setDescription('List all servers that are part of a hub.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Give me the hub name you want to seee the .')
+      .setAutocomplete(true)
+      .setRequired(true)))
+  .addSubcommand((SC) => SC
     .setName('join')
     .setDescription('Add this channel to a hub.')
     .addStringOption((option) => option
