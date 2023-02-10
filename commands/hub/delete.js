@@ -6,7 +6,7 @@ const buttons = new ActionRowBuilder()
   .addComponents([
     new ButtonBuilder()
       .setCustomId('delete')
-      .setEmoji('✅')
+      .setEmoji('🗑️')
       .setLabel('Delete')
       .setStyle(ButtonStyle.Danger),
     new ButtonBuilder()
