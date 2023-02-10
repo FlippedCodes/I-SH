@@ -53,6 +53,19 @@ module.exports.data = new CmdBuilder()
       .setDescription('Write down, how the new hub should be called.')
       .setRequired(true)))
   .addSubcommand((SC) => SC
+    .setName('kick')
+    .setDescription('Kick a server that doestn belong in this hub.')
+    .addStringOption((option) => option
+      .setName('hubname')
+      .setDescription('Tell me, which hub you want to kick the server from.')
+      .setAutocomplete(true)
+      .setRequired(true))
+    .addStringOption((option) => option
+      .setName('server')
+      .setDescription('Please select the server that you want to kick.')
+      .setAutocomplete(true)
+      .setRequired(true)))
+  .addSubcommand((SC) => SC
     .setName('transfer')
     .setDescription('Transfer a hub to a new owner.')
     .addStringOption((option) => option
