@@ -29,7 +29,8 @@ async function getHubID(HubName, name) {
   return [null];
 }
 
-module.exports.run = async (interaction, HubName, BridgedChannel, hubnameStr) => {
+module.exports.run = async (interaction, HubName, BridgedChannel) => {
+  const hubnameStr = interaction.options.getString('hubname');
   // parse values
   const [hubID, ownerID] = await getHubID(HubName, hubnameStr);
   const channelAmmount = await countChannels(BridgedChannel, hubID);
