@@ -19,7 +19,7 @@ Demo https://www.youtube.com/watch?v=lsbk-TlyO1Y
 
 ## The Future
 
-> Int he future I-SH will get compatibilty with other platforms, like Telegram and Guilded.
+> In the future I-SH will get compatibility with other platforms, like Telegram and Guilded.
 
 ## Source Code
 
