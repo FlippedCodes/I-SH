@@ -6,7 +6,7 @@ global.messageFail = async (interaction, body, color, ephemeral) => {
 
 global.messageSuccess = async (interaction, body, color, ephemeral) => {
   const sentMessage = await client.functions.get('EmbedBuilder')
-    .run(interaction, body, '', color || 'Green', false, ephemeral || false);
+    .run(interaction, body, '', color || 'Green', false, ephemeral || true);
   return sentMessage;
 };
 

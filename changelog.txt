@@ -16,6 +16,7 @@ Boring Bug Fixes:
 - Better error handling on message deletions (it was spamming the console)
 - /about better formatting
 - Wiki has been updated with new features
+- default ephemeral enabled for successful commands
 
 Planned for the Future:
 - use bans to deny service to a guild
