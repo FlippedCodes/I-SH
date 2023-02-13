@@ -2,7 +2,8 @@
 __Bot update - 2.1.0 - Permissions, Management and Discord Invites!__
 New Stuff:
 - Rename command (/hub rename)
-- Transfer command (/hub transfer)
+- Transfer hub command (/hub transfer)
+- List guild command (/hub listserver)
 - Guild kick command (/hub kick)
 - Allow invite to be displayed on other server (/allowinvites)
 - Block users from your guild (/blockuser)
