@@ -20,3 +20,6 @@ Planned for the Future:
 - Telegram support
 - Guilded support
 - user and server blacklist
+
+ToS update:
+Minor corrections on naming conventions with the new features. Use `/tos` to read the update.
