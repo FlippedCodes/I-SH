@@ -10,6 +10,7 @@ module.exports.run = async (interaction, HubName, user, BlockedUser, hubID) => {
     .setColor('Green')
     .addFields([
       { name: 'Blocked since:', value: `<t:${Date.parse(blockedUserInfo.createdAt) / 1000}>` },
+      { name: 'Acknowledged:', value: prettyCheck(blockedUserInfo.acknowledged) },
       { name: 'Reason:', value: blockedUserInfo.reason },
     ]);
   reply(interaction, { embeds: [embed], ephemeral: true });
