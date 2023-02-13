@@ -23,11 +23,14 @@ module.exports.run = async (message) => {
   const allMessageIDs = await getMessages(message.id);
   if (!allMessageIDs) return;
 
+  // TODO: Implement better handling when bot picks up its own deletion process (might not be needed with prtials anymore)
   allMessageIDs.forEach(async (entry) => {
     if (message.id === entry.messageID) return;
     const channel = await client.channels.cache.get(entry.channelID);
+    // check if bot has permissions to delete messages
     if (!channel.guild.members.me.permissionsIn(channel).has(PermissionsBitField.Flags.ManageMessages)) return;
-    targetMessage.delete();
+    // empty catch, because there is no need to deal with a deletion fail.
+    channel.messages.delete(entry.messageID).catch(() => {});
   });
 };
 
