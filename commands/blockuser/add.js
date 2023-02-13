@@ -1,4 +1,3 @@
-
 module.exports.run = async (interaction, HubName, user, BlockedUser, hubIDRaw) => {
   const reason = interaction.options.getString('reason', true);
   const created = await BlockedUser.findOrCreate({
