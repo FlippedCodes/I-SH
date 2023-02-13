@@ -8,7 +8,7 @@ const BlockedUser = require('../database/models/blockedUser');
 
 module.exports.run = async (interaction) => {
   await interaction.deferReply({ ephemeral: true });
-  // TODO: check user permissions
+  // TODO: needs permission testing
 
   // check BanMembers permissions
   if (!interaction.memberPermissions.has(PermissionsBitField.Flags.BanMembers)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName}\` in this server.`);

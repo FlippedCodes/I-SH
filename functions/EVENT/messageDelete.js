@@ -23,7 +23,6 @@ module.exports.run = async (message) => {
   const allMessageIDs = await getMessages(message.id);
   if (!allMessageIDs) return;
 
-  // TODO: Implement better handling when bot picks up its own deletion process (might not be needed with prtials anymore)
   allMessageIDs.forEach(async (entry) => {
     if (message.id === entry.messageID) return;
     const channel = await client.channels.cache.get(entry.channelID);
