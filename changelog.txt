@@ -4,16 +4,15 @@ New Stuff:
 - Rename command (/hub rename)
 - Transfer command (/hub transfer)
 - Guild kick command (/hub kick)
-- Allow invites command (/allowinvites)
+- Allow invite to be displayed on other server (/allowinvites)
 - Block users from your guild (/blockuser)
-- Button can now be used to allow invites
 
 Important Changes:
 - Old command-prefix deprecation warning has been removed.
 - Announce when a new guild joins a hub.
 
 Boring Bug Fixes:
-- Better error handling on message deletions
+- Better error handling on message deletions (it was spamming the console)
 
 Planned for the Future:
 - use bans to deny service to a guild
