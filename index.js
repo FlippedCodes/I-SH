@@ -1,5 +1,7 @@
 // init Discord
-const { Client, IntentsBitField, Collection } = require('discord.js');
+const {
+  Client, IntentsBitField, Collection, Partials,
+} = require('discord.js');
 // init filesystem
 const fs = require('fs');
 // init command builder
@@ -11,7 +13,11 @@ const intents = new IntentsBitField([
   IntentsBitField.Flags.MessageContent,
 ]);
 // init Discord client
-global.client = new Client({ allowedMentions: { parse: ['users', 'roles'], repliedUser: true }, intents });
+global.client = new Client({
+  allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
+  partials: [Partials.Message],
+  intents,
+});
 // init config
 global.config = require('./config.json');
 
@@ -75,11 +81,7 @@ client.on('channelDelete', (channel) => client.functions.get('EVENT_channelDelet
 client.on('guildDelete', (guild) => client.functions.get('EVENT_guildDelete').run(guild));
 
 // trigger on deleted message with raw package
-client.on('raw', async (packet) => {
-  if (packet.t === 'MESSAGE_DELETE' && packet.d.guild_id) {
-    client.functions.get('EVENT_messageDelete').run(packet.d);
-  }
-});
+client.on('messageDelete', (message) => client.functions.get('EVENT_messageDelete').run(message));
 
 // itneraction is triggered (command, autocomplete, etc.)
 client.on('interactionCreate', (interaction) => client.functions.get('EVENT_interactionCreate').run(interaction));
