@@ -6,16 +6,17 @@ New Stuff:
 - Guild kick command (/hub kick)
 - Allow invites command (/allowinvites)
 - Block users from your guild (/blockuser)
+- Button can now be used to allow invites
 
 Important Changes:
 - Old command-prefix deprecation warning has been removed.
 - Announce when a new guild joins a hub.
 
 Boring Bug Fixes:
-- 
+- Better error handling on message deletions
 
 Planned for the Future:
-- add discord invite link
+- use bans to deny service to a guild
 - check nsfw channels
 - Telegram support
 - Guilded support
