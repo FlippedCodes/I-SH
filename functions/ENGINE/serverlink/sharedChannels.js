@@ -59,8 +59,12 @@ module.exports.run = async (message) => {
     let hook = channelWebhooks.find((hook) => hook.owner.id === client.user.id);
     if (!hook) hook = await channel.createWebhook({ name: config.name }).catch(ERR);
     const sentMessage = await hook.send({
+        content: message.content,
       // invite logic for remote channel
-      content: message.content, components: [postChannel.allowInvites ? predoneButtonsWInv : predoneButtons], username, avatarURL, files,
+        components: [postChannel.allowInvites ? predoneButtonsWInv : predoneButtons],
+        username,
+        avatarURL,
+        files,
     }).catch(ERR);
     // create DB entry for messageLink
     MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });
