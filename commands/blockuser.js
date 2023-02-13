@@ -8,17 +8,17 @@ const BlockedUser = require('../database/models/blockedUser');
 
 module.exports.run = async (interaction) => {
   await interaction.deferReply({ ephemeral: true });
+  // TODO: check user permissions
 
   // check BanMembers permissions
   if (!interaction.memberPermissions.has(PermissionsBitField.Flags.BanMembers)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName}\` in this server.`);
 
   const subName = interaction.options.getSubcommand(true);
-  const user = interaction.options.getUser('user', true);
-  const hubID = await BridgedChannel.findOne({ attributes: ['hubID'], where: { channelID: interaction.channel.id } }).catch(ERR);
-  if (!hubID) return messageFail(interaction, 'This channel is not part of a hub.');
-  // TODO: check user permissions
+  const user = interaction.options.getUser('user');
+  const hubDetails = await BridgedChannel.findOne({ attributes: ['hubID'], where: { channelID: interaction.channel.id } }).catch(ERR);
+  if (!hubDetails) return messageFail(interaction, 'This channel is not part of a hub.');
 
-  client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, user, BlockedUser, hubID);
+  client.commands.get(`${module.exports.data.name}_${subName}`).run(interaction, HubName, user, BlockedUser, hubDetails);
 };
 
 module.exports.data = new CmdBuilder()
@@ -44,6 +44,7 @@ module.exports.data = new CmdBuilder()
     .addStringOption((option) => option
       .setName('reason')
       .setDescription('The reason will be visible to the user.')
+      .setMaxLength(255)
       .setRequired(true)))
   .addSubcommand((SC) => SC
     .setName('remove')
