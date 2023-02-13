@@ -26,11 +26,10 @@ const buttonWithInvite = (servername, invite) => new ActionRowBuilder()
   ]);
 
 module.exports.run = async (message) => {
-  // TODO: attach invite, if setting is on
   // get channelID
   const channelID = message.channel.id;
   // check if channelID is part of i-sh: get hubID
-  // TODO: create channelcache for channels in list to reduce db calls
+  // TODO: create channelcache for channels in list to reduce db calls. maybe with a redis DB
   const sourceChannel = await bridgedChannel.findOne({ attributes: ['hubID', 'allowInvites'], where: { channelID } }).catch(ERR);
   if (!sourceChannel) return;
   // only remove old entries if new message gets sended to avoid DB overload

@@ -5,9 +5,7 @@ const BridgedChannel = require('../database/models/bridgedChannel');
 module.exports.run = async (interaction) => {
   const allowInvites = interaction.options.getBoolean('allow');
 
-  // TODO: needs permission testing
-
-  // check MANAGE_CHANNELS user permissions
+  // check ManageChannels user permissions
   if (!interaction.memberPermissions.has(PermissionsBitField.Flags.ManageChannels)) return messageFail(interaction, `You are not authorized to use \`/${interaction.commandName}\` in this server.`);
 
   // get hub

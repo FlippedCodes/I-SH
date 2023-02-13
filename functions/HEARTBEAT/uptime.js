@@ -1,4 +1,3 @@
-// TODO: use vanilla implementation so not an entire packige is needed
 const axios = require('axios');
 
 const params = (pingRaw) => (

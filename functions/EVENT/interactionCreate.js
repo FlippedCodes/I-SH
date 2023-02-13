@@ -1,7 +1,6 @@
 module.exports.run = async (interaction) => {
   // only guild command
-  // TODO: check if neseccary, because this seems to be a useless intent 'DIRECT_MESSAGES'
-  // TODO: maybe check if command deployment to DM can be supressed
+  // TODO: implement command permission system, that way permission checking and dm checking is not nessesary anymore.
   if (!await interaction.inGuild()) return messageFail(interaction, 'The bot is for server-use only.');
 
   // autocomplete hanlder
