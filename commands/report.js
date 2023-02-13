@@ -39,6 +39,7 @@ module.exports.run = async (interaction) => {
   if (!hubID) return messageFail(interaction, 'Please run this command in the channel you saw the message in.\nDon\'t worry, the bots and your message wont show up for anyone else in this command.\n\nMake sure the channel this command is run in is a shared channel, otherwise this will not work.');
 
   const messageID = interaction.options.getString('messageid');
+  const reason = interaction.options.getString('reason');
   if (isNaN(messageID)) return messageFail(interaction, 'Please provide a valid message ID');
   const reportedMessage = await interaction.channel.messages.fetch(messageID).catch(() => null);
   if (!reportedMessage) return messageFail(interaction, 'Please provide a valid message ID');
@@ -67,11 +68,11 @@ module.exports.run = async (interaction) => {
             value: reportedMessage.id,
           },
           {
-            name: 'Username',
+            name: 'Username sender',
             value: reportedMessage.author.tag,
           },
           {
-            name: 'User ID',
+            name: 'User(/Webook) ID',
             value: reportedMessage.author.id,
           },
           {
@@ -85,6 +86,14 @@ module.exports.run = async (interaction) => {
           {
             name: 'Guild ID',
             value: reportedMessage.guildId,
+          },
+          {
+            name: 'User reporter',
+            value: interaction.user.id,
+          },
+          {
+            name: 'Reason for report',
+            value: reason,
           },
         ]);
       if (files) {
@@ -121,4 +130,5 @@ module.exports.run = async (interaction) => {
 module.exports.data = new CmdBuilder()
   .setName('report')
   .setDescription('Report a message.')
-  .addStringOption((option) => option.setName('messageid').setDescription('The message id you would like to report.').setRequired(true));
+  .addStringOption((option) => option.setName('messageid').setDescription('The message id you would like to report.').setRequired(true))
+  .addStringOption((option) => option.setName('reason').setDescription('The message id you would like to report.').setRequired(true));
