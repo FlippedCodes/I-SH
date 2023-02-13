@@ -6,6 +6,8 @@ const bridgedChannel = require('../../../database/models/bridgedChannel');
 
 const MessageLink = require('../../../database/models/messageLink');
 
+const BlockedUser = require('../../../database/models/blockedUser');
+
 const button = (servername) => new ActionRowBuilder()
   .addComponents([
     new ButtonBuilder()
@@ -49,26 +51,55 @@ module.exports.run = async (message) => {
   // lookup if existing attachment
   const files = [];
   if (message.attachments.size > 0) message.attachments.forEach((file) => files.push(file.url));
+  // check userid combination with hubid to make less noise on the DB
+  const testBlocked = await BlockedUser.findOne({ attributes: ['userID'], where: { hubID, userID: message.author.id } }).catch(ERR);
+  allHubChannels
+  // filter channel list if user is in blocklist
+  // .filter(async (postChannel) => {
+  //   const postChannelID = postChannel.channelID;
+  //   // check if it is the same channel
+  //   if (postChannelID === channelID) return;
+
+  //   const blockedUserInfo = await BlockedUser.findOne({ attributes: ['userID'], where: { channelID: postChannelID, userID: message.author.id } }).catch(ERR);
+  //   console.log(blockedUserInfo);
+  //   return !blockedUserInfo;
+  // })
   // post message in every channel besides original one
-  allHubChannels.forEach(async (postChannel) => {
-    const postChannelID = postChannel.channelID;
-    if (postChannelID === channelID) return;
-    const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
-    if (!channel) return console.warn('Channel', postChannelID, 'not found');
-    const channelWebhooks = await channel.fetchWebhooks();
-    let hook = channelWebhooks.find((hook) => hook.owner.id === client.user.id);
-    if (!hook) hook = await channel.createWebhook({ name: config.name }).catch(ERR);
-    const sentMessage = await hook.send({
+    .forEach(async (postChannel) => {
+      const postChannelID = postChannel.channelID;
+      // check if it is the same channel
+      if (postChannelID === channelID) return;
+
+      const channel = client.channels.cache.find((channel) => channel.id === postChannelID);
+
+      if (testBlocked) {
+        // filter channel list if user is in blocklist
+        // TODO: Better implemetnation by just getting all info once and use collections to find if user is blocked
+        // blockID needs to be selected, as its needed to update 'acknowledged'
+        const blockedInfo = await BlockedUser.findOne({ attributes: ['blockID', 'reason', 'acknowledged'], where: { channelID: postChannelID, userID: message.author.id } }).catch(ERR);
+        if (blockedInfo) {
+          if (blockedInfo.acknowledged) return;
+          const desc = `You have been blocked from \`${channel.guild.name}\` for the following reason:\n**${blockedInfo.reason}**\n\nBy reading this, you have acknowledged it and this warning will not be displayed again.`;
+          await messageFail(message, desc);
+          return blockedInfo.update({ acknowledged: true });
+        }
+      }
+
+      if (!channel) return console.warn('Channel', postChannelID, 'not found');
+      const channelWebhooks = await channel.fetchWebhooks();
+      let hook = channelWebhooks.find((hook) => hook.owner.id === client.user.id);
+      if (!hook) hook = await channel.createWebhook({ name: config.name }).catch(ERR);
+      const sentMessage = await hook.send({
         content: message.content,
-      // invite logic for remote channel
+        // invite logic for remote channel
         components: [postChannel.allowInvites ? predoneButtonsWInv : predoneButtons],
         username,
         avatarURL,
         files,
-    }).catch(ERR);
-    // create DB entry for messageLink
-    MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });
-  });
+      }).catch(ERR);
+      // create DB entry for messageLink
+      MessageLink.create({ messageInstanceID: message.id, messageID: sentMessage.id, channelID: postChannelID });
+    });
 };
 
 module.exports.help = {
