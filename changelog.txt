@@ -13,6 +13,7 @@ Important Changes:
 
 Boring Bug Fixes:
 - Better error handling on message deletions (it was spamming the console)
+- /about better formatting
 
 Planned for the Future:
 - use bans to deny service to a guild

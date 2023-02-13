@@ -29,7 +29,7 @@
     },
     "commands": {
         "about": {
-            "text": "./readme.md"
+            "text": "./about.txt"
         },
         "changelog": {
             "text": "./changelog.txt"
