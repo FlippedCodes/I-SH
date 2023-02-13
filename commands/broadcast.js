@@ -17,8 +17,7 @@ module.exports.run = async (interaction) => {
   if (interaction.user.id !== '172031697355800577') return messageFail(interaction, `You are not authorized to use \`/${module.exports.data.name}\``, null, false);
   await interaction.deferReply({ ephemeral: true });
 
-  const body = interaction.options.getString('message', true).replaceAll('\\n', `
-  `);
+  const body = interaction.options.getString('message', true).replaceAll('\\n', '\n');
   const username = interaction.user.username;
   const avatarURL = interaction.user.avatarURL({ format: 'png', dynamic: true, size: 512 });
   const allHubChannels = await bridgedChannel.findAll({ attributes: ['channelID'] }).catch(ERR);
