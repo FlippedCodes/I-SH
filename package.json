@@ -3,14 +3,14 @@
   "version": "2.1.0",
   "main": "index.js",
   "dependencies": {
-    "@discordjs/builders": "^1.4.0",
+    "@discordjs/builders": "^1.5.0",
     "axios": "^0.27.2",
-    "bufferutil": "^4.0.6",
-    "discord.js": "^14.7.1",
+    "bufferutil": "^4.0.7",
+    "discord.js": "^14.8.0",
     "html-to-image": "^1.10.4",
     "mysql2": "^2.3.3",
     "sequelize": "^6.16.1",
-    "utf-8-validate": "^5.0.9"
+    "utf-8-validate": "^5.0.10"
   },
   "devDependencies": {
     "eslint": "^8.9.0",
