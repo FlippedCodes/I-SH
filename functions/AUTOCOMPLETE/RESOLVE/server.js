@@ -9,8 +9,8 @@ module.exports.run = async (interaction) => {
   const allServers = await bridgedChannel.findAll({ attributes: ['serverID'], where: { hubID: hub.hubID } }).catch(ERR);
 
   const output = allServers.map((entry) => {
-    console.log(`DEBUG ${entry.serverID}`);
-    const name = client.guilds.cache.get(entry.serverID).name || entry.serverID;
+    const guild = client.guilds.cache.get(entry.serverID);
+    const name = guild ? guild.name : entry.serverID;
     return { name, value: entry.serverID };
   });
   return output;
