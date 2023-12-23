@@ -11,6 +11,7 @@ jobs:
     env:
       discordToken: ${{ secrets.TOKEN_DISCORD }}
       DB_PORT: ${{ secrets.DB_PORT }}
+      DB_IP: ${{ secrets.DB_IP }}
       DBpassword: ${{ secrets.DB_PASSWORD }}
       db_password_root: ${{ secrets.DB_PASSWORD_ROOT }}
       token_uptime: ${{ secrets.TOKEN_UPTIME }}
