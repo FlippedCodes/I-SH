@@ -19,8 +19,8 @@
     "functions": {
         "heartbeat": {
             "uptime": {
-                "interval": 50000,
-                "endpoint": "http://statuspage_app_sp_1:3001/api/push/"
+                "interval": 60,
+                "endpoint": "https://status.flipped.codes/api/push/"
             }
         },
         "messageGarbageCollection": {

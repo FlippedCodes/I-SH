@@ -16,8 +16,7 @@ module.exports.run = async () => {
   // client.functions.get('HEARTBEAT_BOTLIST_discordbots').run();
   // client.functions.get('HEARTBEAT_BOTLIST_motiondevelopment').run();
   // uptime page
-  // TODO: curreclty not set up
-  // client.functions.get('HEARTBEAT_uptime').run();
+  client.functions.get('HEARTBEAT_uptime').run();
 };
 
 module.exports.data = {
