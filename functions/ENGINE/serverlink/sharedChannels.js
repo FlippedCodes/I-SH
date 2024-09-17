@@ -78,7 +78,7 @@ module.exports.run = async (message) => {
         const blockedInfo = await BlockedUser.findOne({ attributes: ['blockID', 'reason', 'acknowledged'], where: { channelID: postChannelID, userID: message.author.id } }).catch(ERR);
         if (blockedInfo) {
           if (blockedInfo.acknowledged) return;
-          const desc = `You have been blocked from \`${channel.guild.name}\` for the following reason:\n**${blockedInfo.reason}**\n\nBy reading this, you have acknowledged it and this warning will not be displayed again.`;
+          const desc = `You have been blocked from \`${channel.guild.name}\` for the following reason:\n**${blockedInfo.reason}**\n\nThis warning will not be displayed again.`;
           await messageFail(message, desc);
           return blockedInfo.update({ acknowledged: true });
         }
