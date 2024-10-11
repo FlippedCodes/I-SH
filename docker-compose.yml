@@ -26,6 +26,13 @@ services:
       MYSQL_DATABASE: ish
       MYSQL_USER: ish
       MYSQL_PASSWORD: ${DBpassword}
+    networks:
+      - default
+      - grafana_exposed
+
+networks:
+  grafana_exposed:
+    external: true
 
 volumes:
   db_data:
