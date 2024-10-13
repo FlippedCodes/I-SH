@@ -4,11 +4,12 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/builders": "^1.5.0",
-    "axios": "^0.27.2",
+    "@sentry/node": "^8.34.0",
+    "axios": "^1.7.7",
     "bufferutil": "^4.0.7",
     "discord.js": "^14.8.0",
     "html-to-image": "^1.10.4",
-    "mysql2": "^2.3.3",
+    "mysql2": "^3.11.3",
     "sequelize": "^6.16.1",
     "utf-8-validate": "^5.0.10"
   },

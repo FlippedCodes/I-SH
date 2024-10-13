@@ -14,6 +14,7 @@ services:
       DBusername: ish
       DBpassword: ${DBpassword}
       DBdialect: mysql
+      sentryLink: ${SENTRY_LINK}
   db-ish:
     image: mariadb:latest
     restart: always

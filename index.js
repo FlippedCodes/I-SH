@@ -1,3 +1,4 @@
+require('./functions/telemetry');
 // init Discord
 const {
   Client, IntentsBitField, Collection, Partials,

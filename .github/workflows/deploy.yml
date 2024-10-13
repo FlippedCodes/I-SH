@@ -15,6 +15,7 @@ jobs:
       DBpassword: ${{ secrets.DB_PASSWORD }}
       db_password_root: ${{ secrets.DB_PASSWORD_ROOT }}
       token_uptime: ${{ secrets.TOKEN_UPTIME }}
+      SENTRY_LINK: ${{ secrets.SENTRY_LINK }}
 
     steps:
       - uses: actions/checkout@v2
