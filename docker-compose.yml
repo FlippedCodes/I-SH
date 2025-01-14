@@ -17,6 +17,7 @@ services:
       sentryLink: ${SENTRY_LINK}
   db-ish:
     image: mariadb:latest
+    command: --max_allowed_packet=256M
     restart: always
     ports:
       - "${DB_IP}:${DB_PORT}:3306"
